@@ -18,6 +18,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".UsersActivity"
+            android:label="@string/title_activity_users" />
+        <activity
+            android:name=".PetsActivity"
+            android:label="@string/title_activity_pets" />
+        <activity
+            android:name=".ViewUserActivity"
+            android:label="@string/title_activity_view_user"
+            android:parentActivityName=".UsersActivity" />
+        <activity android:name=".ViewPetActivity"
+            android:label="@string/title_activity_view_pet"
+            android:parentActivityName=".PetsActivity"/>
     </application>
 
 </manifest>
