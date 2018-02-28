@@ -59,11 +59,21 @@
                 android:layout_height="40dp"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="50dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginRight="70dp"
+                android:layout_centerVertical="true"
                 android:gravity="center"
                 android:layoutDirection="ltr"
                 android:text="Martha" />
+
+            <Button
+                android:id="@+id/button8"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:background="@android:drawable/ic_menu_edit" />
 
         </RelativeLayout>
 
@@ -89,11 +99,21 @@
                 android:layout_height="40dp"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="50dp"
+                android:layout_marginRight="70dp"
                 android:layout_marginTop="10dp"
                 android:gravity="center"
                 android:layoutDirection="ltr"
                 android:text="Tim" />
+
+            <Button
+                android:id="@+id/button8"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:background="@android:drawable/ic_menu_edit" />
         </RelativeLayout>
 
         <Space
@@ -118,11 +138,20 @@
                 android:layout_height="40dp"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="50dp"
+                android:layout_marginRight="70dp"
                 android:layout_marginTop="10dp"
                 android:gravity="center"
                 android:layoutDirection="ltr"
                 android:text="Stewart" />
+            <Button
+                android:id="@+id/button8"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:background="@android:drawable/ic_menu_edit" />
         </RelativeLayout>
 
         <Space
@@ -147,11 +176,20 @@
                 android:layout_height="40dp"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="50dp"
+                android:layout_marginRight="70dp"
                 android:layout_marginTop="10dp"
                 android:gravity="center"
                 android:layoutDirection="ltr"
                 android:text="Alex" />
+            <Button
+                android:id="@+id/button8"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:background="@android:drawable/ic_menu_edit" />
         </RelativeLayout>
 
     </LinearLayout>
