@@ -7,17 +7,6 @@
     android:layout_height="match_parent"
     tools:context="northeastern.is4300.pettasktracker.MainActivity">
 
-    <TextView
-        android:id="@+id/message"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:layout_marginStart="@dimen/activity_horizontal_margin"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:text="@string/title_home"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"
         android:layout_width="0dp"
@@ -191,6 +180,15 @@
                 android:layout_marginRight="10dp"
                 android:background="@android:drawable/ic_menu_edit" />
         </RelativeLayout>
+
+        <Button
+            android:id="@+id/button9"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="310dp"
+            android:background="@android:drawable/ic_menu_add" />
+
 
     </LinearLayout>
 
