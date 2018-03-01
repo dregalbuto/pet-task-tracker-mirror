@@ -7,4 +7,17 @@
     <string name="title_activity_pets">Pets</string>
     <string name="title_activity_view_user">View User</string>
     <string name="title_activity_view_pet">View Pet</string>
+    <string name="title_activity_add_pet">Add a Pet</string>
+    <string name="pet_name">Cookie</string>
+
+    <string name="cat_pic_alt">Cat</string>
+
+    <string name="prompt_pet_name">Name</string>
+    <string name="prompt_pet_type">Type</string>
+    <string-array name="array_pet_types">
+        <item>Cat</item>
+        <item>Dog</item>
+    </string-array>
+    <string name="prompt_pet_pic">Image</string>
+    <string name="prompt_pet_confirm">Add Pet</string>
 </resources>
