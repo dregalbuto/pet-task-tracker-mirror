@@ -1,10 +1,13 @@
 package northeastern.is4300.pettasktracker;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class PetsActivity extends AppCompatActivity {
@@ -35,6 +38,15 @@ public class PetsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pets);
+
+        /* Set up Add Pet button */
+        Button addButton = (Button) findViewById(R.id.button_add_pet);
+        addButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent myIntent = new Intent(PetsActivity.this, AddPetActivity.class);
+                startActivity(myIntent);
+            }
+        });
 
         mTextMessage = (TextView) findViewById(R.id.message);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
