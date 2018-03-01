@@ -28,8 +28,13 @@
             android:name=".ViewUserActivity"
             android:label="@string/title_activity_view_user"
             android:parentActivityName=".UsersActivity" />
-        <activity android:name=".ViewPetActivity"
+        <activity
+            android:name=".ViewPetActivity"
             android:label="@string/title_activity_view_pet"
+            android:parentActivityName=".PetsActivity" />
+        <activity
+            android:name=".AddPetActivity"
+            android:label="@string/title_activity_add_pet"
             android:parentActivityName=".PetsActivity"/>
     </application>
 
