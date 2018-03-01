@@ -35,7 +35,11 @@
         <activity
             android:name=".AddPetActivity"
             android:label="@string/title_activity_add_pet"
-            android:parentActivityName=".PetsActivity"/>
+            android:parentActivityName=".PetsActivity" />
+        <activity
+            android:name=".AddTaskActivity"
+            android:label="@string/title_activity_add_task"
+            android:parentActivityName=".MainActivity"/>
     </application>
 
 </manifest>

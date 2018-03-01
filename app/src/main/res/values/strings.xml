@@ -8,6 +8,7 @@
     <string name="title_activity_view_user">View User</string>
     <string name="title_activity_view_pet">View Pet</string>
     <string name="title_activity_add_pet">Add a Pet</string>
+    <string name="title_activity_add_task">Add a Task</string>
     <string name="pet_name">Cookie</string>
 
     <string name="cat_pic_alt">Cat</string>

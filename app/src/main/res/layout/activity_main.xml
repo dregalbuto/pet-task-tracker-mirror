@@ -71,7 +71,7 @@
                 android:text="Feed Cookie\n 9:00 AM" />
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/namebutton1"
                 android:layout_width="100dp"
                 android:layout_height="40dp"
                 android:layout_alignParentEnd="true"
@@ -83,7 +83,7 @@
                 android:text="Martha" />
 
             <Button
-                android:id="@+id/button8"
+                android:id="@+id/pencil1"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_alignParentEnd="true"
@@ -111,7 +111,7 @@
                 android:text="Walk Rudy\n 9:00 AM" />
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/namebutton2"
                 android:layout_width="100dp"
                 android:layout_height="40dp"
                 android:layout_alignParentEnd="true"
@@ -123,7 +123,7 @@
                 android:text="Tim" />
 
             <Button
-                android:id="@+id/button8"
+                android:id="@+id/pencil2"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_alignParentEnd="true"
@@ -150,7 +150,7 @@
                 android:text="Give Cookie Insulin\n 5:00 PM" />
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/namebutton3"
                 android:layout_width="100dp"
                 android:layout_height="40dp"
                 android:layout_alignParentEnd="true"
@@ -162,7 +162,7 @@
                 android:text="Stewart" />
 
             <Button
-                android:id="@+id/button8"
+                android:id="@+id/pencil3"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_alignParentEnd="true"
@@ -189,7 +189,7 @@
                 android:text="Walk Rudy\n 7:00 PM" />
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/namebutton4"
                 android:layout_width="100dp"
                 android:layout_height="40dp"
                 android:layout_alignParentEnd="true"
@@ -201,7 +201,7 @@
                 android:text="Alex" />
 
             <Button
-                android:id="@+id/button8"
+                android:id="@+id/pencil4"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_alignParentEnd="true"
@@ -212,7 +212,7 @@
         </RelativeLayout>
 
         <Button
-            android:id="@+id/button9"
+            android:id="@+id/button_add_task_main"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginLeft="310dp"
