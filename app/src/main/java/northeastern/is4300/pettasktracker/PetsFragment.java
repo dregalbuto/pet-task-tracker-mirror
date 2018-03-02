@@ -33,7 +33,17 @@ public class PetsFragment extends Fragment {
         viewPetButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), ViewPetActivity.class);
+                Intent intent = new Intent(getActivity(), ViewPetActivity_Cookie.class);
+                startActivity(intent);
+            }
+        });
+
+        /* Set up View Pet button */
+        Button viewPetButton2 = (Button) v.findViewById(R.id.pet_button_2);
+        viewPetButton2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), ViewPetActivity_Rudy.class);
                 startActivity(intent);
             }
         });

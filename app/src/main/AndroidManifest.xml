@@ -19,7 +19,7 @@
             android:label="@string/title_activity_view_user"
             android:parentActivityName=".MainActivity" />
         <activity
-            android:name=".ViewPetActivity"
+            android:name=".ViewPetActivity_Cookie"
             android:label="@string/title_activity_view_pet"
             android:parentActivityName=".MainActivity" />
         <activity
@@ -32,9 +32,7 @@
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".MainActivity"
-            android:label="@string/title_activity_main">
-
-        </activity>
+            android:label="@string/title_activity_main"></activity>
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login">
@@ -44,6 +42,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ViewPetActivity_Rudy"></activity>
     </application>
 
 </manifest>
