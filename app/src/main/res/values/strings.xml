@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Pet Task Tracker</string>
+
+    <!-- titles -->
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
@@ -9,16 +11,21 @@
     <string name="title_activity_view_pet">View Pet</string>
     <string name="title_activity_add_pet">Add a Pet</string>
     <string name="title_activity_add_task">Add a Task</string>
-    
+    <string name="title_activity_main">Pet Task Tracker</string>
+
+    <!-- view pets -->
     <string name="pet_name_1">Cookie</string>
     <string name="pet_name_2">Rudy</string>
+    <string name="cat_pic_alt">Cat</string>
+    <string name="dog_pic_alt">Dog</string>
+
+    <!-- view users -->
     <string name="user_name_1">Martha</string>
     <string name="user_name_2">Stuart</string>
     <string name="user_name_3">Tim</string>
-
-    <string name="cat_pic_alt">Cat</string>
     <string name="profile_pic_alt">Profile</string>
 
+    <!-- add pet -->
     <string name="prompt_pet_name">Name</string>
     <string name="prompt_pet_type">Type</string>
     <string-array name="array_pet_types">
@@ -28,6 +35,7 @@
     <string name="prompt_pet_pic">Image</string>
     <string name="prompt_pet_confirm">Add Pet</string>
 
+    <!-- add task -->
     <string name="prompt_task_type">Type</string>
     <string-array name="array_task_type">
         <item>Feed</item>
@@ -62,5 +70,4 @@
     <string name="prompt_task_notes">Notes</string>
     <string name="button_task_confirm">Add Task</string>
 
-    <string name="title_activity_main">MainActivity</string>
 </resources>
