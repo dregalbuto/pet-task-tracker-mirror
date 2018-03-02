@@ -26,7 +26,7 @@ public class TimelineFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_timeline, container, false);
 
         /* Set up Add Task button */
-        Button confirmationButton = (Button) v.findViewById(R.id.button_pet_confirm);
+        Button confirmationButton = (Button) v.findViewById(R.id.button_add_task_main);
         confirmationButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent myIntent = new Intent(getActivity(), AddTaskActivity.class);
