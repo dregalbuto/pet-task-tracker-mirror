@@ -1,19 +1,18 @@
 package northeastern.is4300.pettasktracker;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
-public class AddTaskActivity extends AppCompatActivity {
-
+public class EditTaskActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_task);
+        setContentView(R.layout.activity_edit_task);
 
         /* Set up drop-down menus (spinners) */
         Spinner spinner1 = (Spinner) findViewById(R.id.spinner_task_type);

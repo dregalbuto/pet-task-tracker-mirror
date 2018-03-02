@@ -11,6 +11,7 @@
     <string name="title_activity_view_pet">View Pet</string>
     <string name="title_activity_add_pet">Add a Pet</string>
     <string name="title_activity_add_task">Add a Task</string>
+    <string name="title_activity_edit_task">Edit Task</string>
     <string name="title_activity_main">Pet Task Tracker</string>
 
     <!-- view pets -->
@@ -69,6 +70,8 @@
     </string-array>
     <string name="prompt_task_notes">Notes</string>
     <string name="button_task_confirm">Add Task</string>
+    <string name="button_task_edit_confirm">Save Task</string>
+
     <string name="title_activity_login">Sign in</string>
 
     <!-- Strings related to login -->

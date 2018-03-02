@@ -25,9 +25,45 @@ public class TimelineFragment extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_timeline, container, false);
 
+        /* Set up Edit Task button */
+        Button editTask1 = (Button) v.findViewById(R.id.pencil1);
+        editTask1.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent myIntent = new Intent(getActivity(), EditTaskActivity.class);
+                startActivity(myIntent);
+            }
+        });
+
+        /* Set up Edit Task button */
+        Button editTask2 = (Button) v.findViewById(R.id.pencil2);
+        editTask2.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent myIntent = new Intent(getActivity(), EditTaskActivity.class);
+                startActivity(myIntent);
+            }
+        });
+
+        /* Set up Edit Task button */
+        Button editTask3 = (Button) v.findViewById(R.id.pencil3);
+        editTask3.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent myIntent = new Intent(getActivity(), EditTaskActivity.class);
+                startActivity(myIntent);
+            }
+        });
+
+        /* Set up Edit Task button */
+        Button editTask4 = (Button) v.findViewById(R.id.pencil4);
+        editTask4.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent myIntent = new Intent(getActivity(), EditTaskActivity.class);
+                startActivity(myIntent);
+            }
+        });
+
         /* Set up Add Task button */
-        Button confirmationButton = (Button) v.findViewById(R.id.button_add_task_main);
-        confirmationButton.setOnClickListener(new View.OnClickListener() {
+        Button addTaskButton = (Button) v.findViewById(R.id.button_add_task_main);
+        addTaskButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent myIntent = new Intent(getActivity(), AddTaskActivity.class);
                 startActivity(myIntent);
