@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+    <CheckBox
+        android:id="@+id/task2"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/back"
+        android:lines="2"
+        android:text="Walk Rudy\n 9:00 AM" />
+
+    <Button
+        android:id="@+id/namebutton2"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="70dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:layoutDirection="ltr"
+        android:text="Tim" />
+
+    <Button
+        android:id="@+id/pencil2"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="10dp"
+        android:background="@android:drawable/ic_menu_edit" />
+</RelativeLayout>
