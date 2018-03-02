@@ -9,37 +9,31 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".MainActivity"
-            android:label="@string/title_home">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".UsersActivity"
-            android:label="@string/title_activity_users" />
-        <activity
-            android:name=".PetsActivity"
-            android:label="@string/title_activity_pets" />
         <activity
             android:name=".ViewUserActivity"
             android:label="@string/title_activity_view_user"
-            android:parentActivityName=".UsersActivity" />
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".ViewPetActivity"
             android:label="@string/title_activity_view_pet"
-            android:parentActivityName=".PetsActivity" />
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".AddPetActivity"
             android:label="@string/title_activity_add_pet"
-            android:parentActivityName=".PetsActivity" />
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".AddTaskActivity"
             android:label="@string/title_activity_add_task"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/title_activity_main">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
