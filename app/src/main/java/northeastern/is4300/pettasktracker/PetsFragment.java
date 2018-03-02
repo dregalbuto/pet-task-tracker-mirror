@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class PetsFragment extends Fragment implements View.OnClickListener {
+public class PetsFragment extends Fragment {
 
     private TextView message1;
 
@@ -28,22 +28,29 @@ public class PetsFragment extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_pets, container, false);
 
+        /* Set up View Pet button */
+        Button viewPetButton = (Button) v.findViewById(R.id.pet_button_1);
+        viewPetButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), ViewPetActivity.class);
+                startActivity(intent);
+            }
+        });
+
         /* Set up Add Pet button */
         Button addPetButton = (Button) v.findViewById(R.id.button_add_pet);
-        message1 = v.findViewById(R.id.message_users);
-        addPetButton.setOnClickListener(this);
+        addPetButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), AddPetActivity.class);
+                startActivity(intent);
+            }
+        });
 
         return v;
     }
 
-    @Override
-    public void onClick(View v) {
-        switch(v.getId()) {
-            case R.id.button_add_pet:
-                Intent intent = new Intent(getActivity(), AddPetActivity.class);
-                startActivity(intent);
-                break;
-        }
-    }
+
 
 }
