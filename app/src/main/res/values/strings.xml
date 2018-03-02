@@ -29,12 +29,38 @@
     <string name="prompt_pet_confirm">Add Pet</string>
 
     <string name="prompt_task_type">Type</string>
+    <string-array name="array_task_type">
+        <item>Feed</item>
+        <item>Walk</item>
+        <item>Medication</item>
+    </string-array>
     <string name="prompt_task_pet">Pet</string>
+    <string-array name="array_task_pet">
+        <item>Cookie</item>
+        <item>Rudy</item>
+    </string-array>
     <string name="prompt_task_user">User</string>
+    <string-array name="array_task_user">
+        <item>Martha</item>
+        <item>Stuart</item>
+        <item>Alex</item>
+    </string-array>
     <string name="prompt_task_time">Time</string>
+    <string-array name="array_task_time">
+        <item>2:00 PM</item>
+        <item>3:00 PM</item>
+        <item>4:00 PM</item>
+        <item>5:00 PM</item>
+        <item>6:00 PM</item>
+        <item>7:00 PM</item>
+    </string-array>
     <string name="prompt_task_repeat">Repeat</string>
+    <string-array name="array_task_repeat">
+        <item>Daily</item>
+        <item>Weekly</item>
+    </string-array>
     <string name="prompt_task_notes">Notes</string>
-    <string name="prompt_task_confirm">Add Task</string>
+    <string name="button_task_confirm">Add Task</string>
 
     <string name="title_activity_main">MainActivity</string>
 </resources>
