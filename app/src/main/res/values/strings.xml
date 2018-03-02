@@ -9,10 +9,12 @@
     <string name="title_activity_view_pet">View Pet</string>
     <string name="title_activity_add_pet">Add a Pet</string>
     <string name="title_activity_add_task">Add a Task</string>
-    <string name="pet_name">Cookie</string>
 
+
+    <string name="pet_name">Cookie</string>
     <string name="cat_pic_alt">Cat</string>
 
+    <!-- Add Pet -->
     <string name="prompt_pet_name">Name</string>
     <string name="prompt_pet_type">Type</string>
     <string-array name="array_pet_types">
@@ -21,4 +23,14 @@
     </string-array>
     <string name="prompt_pet_pic">Image</string>
     <string name="prompt_pet_confirm">Add Pet</string>
+
+    <!-- Add Task -->
+    <string name="prompt_task_type">Type</string>
+    <string name="prompt_task_pet">Pet</string>
+    <string name="prompt_task_user">User</string>
+    <string name="prompt_task_time">Time</string>
+    <string name="prompt_task_repeat">Repeat</string>
+    <string name="prompt_task_notes">Notes</string>
+    <string name="prompt_task_confirm">Add Task</string>
+
 </resources>
