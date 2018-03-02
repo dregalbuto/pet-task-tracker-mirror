@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
@@ -8,218 +7,36 @@
     android:layout_height="match_parent"
     tools:context="northeastern.is4300.pettasktracker.MainActivity">
 
+    <TextView
+        android:id="@+id/message_users"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:text="@string/title_home"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <FrameLayout
+        android:id="@+id/frame_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/navigation"
+        android:animateLayoutChanges="true">
+
+    </FrameLayout>
+
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginStart="0dp"
         android:background="?android:attr/windowBackground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:menu="@menu/navigation">
-
-    </android.support.design.widget.BottomNavigationView>
-
-    <TextView
-        android:id="@+id/message"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="161dp"
-        android:layout_marginStart="161dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/title_home"
-        android:textAlignment="center"
-        android:textColor="@android:color/background_dark"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="368dp"
-        android:layout_height="404dp"
-        android:layout_marginBottom="14dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="5dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/navigation"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.6"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/message">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <CheckBox
-                android:id="@+id/task1"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:background="@drawable/back"
-                android:checked="false"
-                android:lines="2"
-                android:text="Feed Cookie\n 9:00 AM" />
-
-            <Button
-                android:id="@+id/namebutton1"
-                android:layout_width="100dp"
-                android:layout_height="40dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="70dp"
-                android:gravity="center"
-                android:layoutDirection="ltr"
-                android:text="Martha" />
-
-            <Button
-                android:id="@+id/pencil1"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="10dp"
-                android:background="@android:drawable/ic_menu_edit" />
-
-        </RelativeLayout>
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="10dp" />
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <CheckBox
-                android:id="@+id/task2"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:background="@drawable/back"
-                android:lines="2"
-                android:text="Walk Rudy\n 9:00 AM" />
-
-            <Button
-                android:id="@+id/namebutton2"
-                android:layout_width="100dp"
-                android:layout_height="40dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="70dp"
-                android:layout_marginTop="10dp"
-                android:gravity="center"
-                android:layoutDirection="ltr"
-                android:text="Tim" />
-
-            <Button
-                android:id="@+id/pencil2"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="10dp"
-                android:background="@android:drawable/ic_menu_edit" />
-        </RelativeLayout>
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="10dp" />
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <CheckBox
-                android:id="@+id/task3"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:background="@drawable/back"
-                android:lines="2"
-                android:text="Give Cookie Insulin\n 5:00 PM" />
-
-            <Button
-                android:id="@+id/namebutton3"
-                android:layout_width="100dp"
-                android:layout_height="40dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="70dp"
-                android:layout_marginTop="10dp"
-                android:gravity="center"
-                android:layoutDirection="ltr"
-                android:text="Stewart" />
-
-            <Button
-                android:id="@+id/pencil3"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="10dp"
-                android:background="@android:drawable/ic_menu_edit" />
-        </RelativeLayout>
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="10dp" />
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <CheckBox
-                android:id="@+id/task4"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:background="@drawable/back"
-                android:lines="2"
-                android:text="Walk Rudy\n 7:00 PM" />
-
-            <Button
-                android:id="@+id/namebutton4"
-                android:layout_width="100dp"
-                android:layout_height="40dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="70dp"
-                android:layout_marginTop="10dp"
-                android:gravity="center"
-                android:layoutDirection="ltr"
-                android:text="Alex" />
-
-            <Button
-                android:id="@+id/pencil4"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="10dp"
-                android:background="@android:drawable/ic_menu_edit" />
-        </RelativeLayout>
-
-        <Button
-            android:id="@+id/button_add_task_main"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="310dp"
-            android:layout_marginTop="5dp"
-            android:background="@android:drawable/ic_menu_add" />
-
-
-    </LinearLayout>
+        app:menu="@menu/navigation" />
 
 </android.support.constraint.ConstraintLayout>

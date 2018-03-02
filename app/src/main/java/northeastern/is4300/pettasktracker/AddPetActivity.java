@@ -11,6 +11,11 @@ import android.widget.Spinner;
 public class AddPetActivity extends AppCompatActivity {
 
     @Override
+    public void onBackPressed() {
+        getFragmentManager().popBackStack("MainActivity", 0);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_pet);
@@ -26,7 +31,7 @@ public class AddPetActivity extends AppCompatActivity {
         Button confirmationButton = (Button) findViewById(R.id.button_pet_confirm);
         confirmationButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent myIntent = new Intent(AddPetActivity.this, PetsActivity.class);
+                Intent myIntent = new Intent(AddPetActivity.this, MainActivity.class);
                 startActivity(myIntent);
             }
         });
