@@ -9,9 +9,15 @@
     <string name="title_activity_view_pet">View Pet</string>
     <string name="title_activity_add_pet">Add a Pet</string>
     <string name="title_activity_add_task">Add a Task</string>
-    <string name="pet_name">Cookie</string>
+
+    <string name="pet_name_1">Cookie</string>
+    <string name="pet_name_2">Rudy</string>
+    <string name="user_name_1">Martha</string>
+    <string name="user_name_2">Stuart</string>
+    <string name="user_name_3">Tim</string>
 
     <string name="cat_pic_alt">Cat</string>
+    <string name="profile_pic_alt">Profile</string>
 
     <string name="prompt_pet_name">Name</string>
     <string name="prompt_pet_type">Type</string>
