@@ -6,7 +6,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
+
+import northeastern.is4300.pettasktracker.R;
+import northeastern.is4300.pettasktracker.object.Data;
+import northeastern.is4300.pettasktracker.object.Pet;
 
 public class AddTaskActivity extends AppCompatActivity {
 
@@ -50,6 +55,7 @@ public class AddTaskActivity extends AppCompatActivity {
         final Button confirmationButton = (Button) findViewById(R.id.button_task_confirm);
         confirmationButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+
 
                 confirmationButton.setText("Success!");
 
