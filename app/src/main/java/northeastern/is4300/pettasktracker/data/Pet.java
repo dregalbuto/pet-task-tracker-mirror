@@ -1,10 +1,8 @@
-package northeastern.is4300.pettasktracker.object;
+package northeastern.is4300.pettasktracker.data;
 
 import android.media.Image;
-import android.support.annotation.NonNull;
 
 import java.util.ArrayList;
-import java.util.Collection;
 
 /**
  *
@@ -16,10 +14,19 @@ public class Pet {
     private Image avatar;
     private ArrayList<Task> tasks;
 
+
     public Pet(String name, String type) {
         this.name = name;
         this.type = type;
         this.avatar = null;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getType() {
+        return type;
     }
 
     public ArrayList<Task> getTasks() {

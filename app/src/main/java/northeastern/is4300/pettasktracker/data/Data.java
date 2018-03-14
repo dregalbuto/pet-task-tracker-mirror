@@ -1,4 +1,4 @@
-package northeastern.is4300.pettasktracker.object;
+package northeastern.is4300.pettasktracker.data;
 
 import android.app.Application;
 
@@ -45,6 +45,11 @@ public class Data extends Application {
 
     public void addTask(Task t) {
 
+        singleton.tasks.put(t.hashCode(), t);
+    }
+
+    public void addTask(String type, Pet pet, User user, String taskTime, String repeat) {
+        Task t = new Task(type, pet, user, taskTime, repeat);
         singleton.tasks.put(t.hashCode(), t);
     }
 
