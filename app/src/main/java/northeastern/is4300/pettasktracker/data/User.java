@@ -1,45 +1,59 @@
 package northeastern.is4300.pettasktracker.data;
 
 
-import android.arch.persistence.room.ColumnInfo;
-import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.PrimaryKey;
-
 import java.util.ArrayList;
 
 /**
  *
  */
-
-@Entity
 public class User {
-    @PrimaryKey
-    private int uid;
 
-    @ColumnInfo(name="display_name")
+    private long id;
     private String name;
-    @ColumnInfo(name="is_admin")
-    private boolean isAdmin;
+    private int isAdmin;
     private ArrayList<Task> tasks;
 
-    public User(String name, boolean isAdmin, ArrayList<Task> tasks) {
+    public User(String name, int isAdmin, ArrayList<Task> tasks) {
         this.name = name;
         this.isAdmin = isAdmin;
         this.tasks = tasks;
     }
 
-    public User(String name, boolean isAdmin) {
+    public User(String name, int isAdmin) {
         this.name = name;
         this.isAdmin = isAdmin;
         this.tasks = new ArrayList<>();
+    }
+
+    public User() {
+        this.id = 0;
+        this.name = new String();
+        this.isAdmin = 0;
+        this.tasks = null;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getName() {
         return name;
     }
 
-    public boolean getIsAdmin() {
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getIsAdmin() {
         return isAdmin;
+    }
+
+    public void setIsAdmin(int isAdmin) {
+        this.isAdmin = isAdmin;
     }
 
     @Override
@@ -49,7 +63,7 @@ public class User {
 
         User user = (User) o;
 
-        return name.equals(user.name) && (isAdmin && user.isAdmin);
+        return name.equals(user.name) && (isAdmin == user.isAdmin);
     }
 
     @Override

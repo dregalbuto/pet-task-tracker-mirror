@@ -9,6 +9,8 @@ import java.util.ArrayList;
  */
 
 public class Pet {
+
+    private long id;
     private String name;
     private String type;
     private Image avatar;
@@ -21,12 +23,35 @@ public class Pet {
         this.avatar = null;
     }
 
+    public Pet() {
+        this.id = 0;
+        this.name = new String();
+        this.type = new String();
+        this.avatar = null;
+    }
+
+    public long getID() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getType() {
         return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public ArrayList<Task> getTasks() {

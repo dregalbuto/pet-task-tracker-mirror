@@ -1,7 +1,6 @@
 package northeastern.is4300.pettasktracker;
 
 import android.content.Intent;
-import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,7 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-import northeastern.is4300.pettasktracker.object.Data;
+import northeastern.is4300.pettasktracker.data.Data;
 
 public class AddPetActivity extends AppCompatActivity {
 
@@ -40,7 +39,7 @@ public class AddPetActivity extends AppCompatActivity {
                 EditText petNameBox = findViewById(R.id.edit_pet_name);
                 String petName = petNameBox.getText().toString();
 
-                Spinner petTypeBox = findViewById(R.id.spinner_task_type);
+                Spinner petTypeBox = findViewById(R.id.spinner_pet_type);
                 String petType = petTypeBox.getSelectedItem().toString();
 
                 Data d = (Data) getApplication();

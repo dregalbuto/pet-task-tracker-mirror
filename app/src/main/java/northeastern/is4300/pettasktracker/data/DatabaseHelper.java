@@ -28,7 +28,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + UserRepository.TABLE_USERS
             + "(" + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
             + UserRepository.KEY_USER_NAME + " TEXT, "
-            + UserRepository.KEY_USER_ISADMIN + " BOOLEAN)";
+            + UserRepository.KEY_USER_ISADMIN + " INTEGER)";
 
     private static final String CREATE_TABLE_TASKS = "CREATE TABLE "
             + TaskRepository.TABLE_TASKS

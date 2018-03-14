@@ -49,7 +49,7 @@ public class Data extends Application {
     }
 
     public void addTask(String type, Pet pet, User user, String taskTime, String repeat) {
-        Task t = new Task(type, pet, user, taskTime, repeat);
+        Task t = new Task(type, taskTime, repeat);
         singleton.tasks.put(t.hashCode(), t);
     }
 

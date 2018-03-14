@@ -3,6 +3,7 @@ package northeastern.is4300.pettasktracker.data;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ import java.util.HashMap;
  */
 public class UserRepository {
     private DatabaseHelper dbHelper;
+    private SQLiteDatabase database;
 
     static final String TABLE_USERS = "users";
     private static final String KEY_ID = "id";
@@ -23,23 +25,33 @@ public class UserRepository {
         this.dbHelper = new DatabaseHelper(c);
     }
 
-    public int insert(User user) {
-        SQLiteDatabase database = dbHelper.getWritableDatabase();
+    public void open() throws SQLException {
+        database = dbHelper.getWritableDatabase();
+    }
+
+    public void close() {
+        dbHelper.close();
+    }
+
+    public long insert(User user) {
         ContentValues values = new ContentValues();
         values.put(KEY_USER_NAME, user.getName());
         values.put(KEY_USER_ISADMIN, user.getIsAdmin());
-        return (int) database.insert(TABLE_USERS, null, values);
+        long id = database.insert(TABLE_USERS, null, values);
+        user.setId(id);
+        return id;
     }
 
-    public void delete(int userId) {
-        SQLiteDatabase database = dbHelper.getWritableDatabase();
+    public void delete(long userId) {
         database.delete(TABLE_USERS, KEY_ID
                 + "= ?", new String[] { String.valueOf(userId) });
     }
 
-    public ArrayList<HashMap<String, String>> getUserList() {
-        SQLiteDatabase db = dbHelper.getReadableDatabase();
+    public void deleteAll() {
+        database.delete(TABLE_USERS, null, null);
+    }
 
+    public ArrayList<HashMap<String, String>> getUserList() {
         String selectQuery =  "SELECT  " +
                 KEY_ID + "," +
                 KEY_USER_NAME + "," +
@@ -48,7 +60,7 @@ public class UserRepository {
 
         ArrayList<HashMap<String, String>> userList = new ArrayList<>();
 
-        Cursor cursor = db.rawQuery(selectQuery, null);
+        Cursor cursor = database.rawQuery(selectQuery, null);
 
         if (cursor.moveToFirst()) {
             do {
@@ -58,6 +70,35 @@ public class UserRepository {
                 user.put("isAdmin", cursor.getString(cursor.getColumnIndex(KEY_USER_ISADMIN)));
                 userList.add(user);
 
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        return userList;
+    }
+
+    private User cursorToUser(Cursor cursor) {
+        User user = new User();
+        user.setId(cursor.getLong(0));
+        user.setName(cursor.getString(1));
+        user.setIsAdmin(cursor.getInt(2));
+        return user;
+    }
+
+    public ArrayList<User> getUserListAsUsers() {
+        String selectQuery =  "SELECT  " +
+                KEY_ID + "," +
+                KEY_USER_NAME + "," +
+                KEY_USER_ISADMIN +
+                " FROM " + TABLE_USERS;
+
+        ArrayList<User> userList = new ArrayList<>();
+        Cursor cursor = database.rawQuery(selectQuery, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                User u = cursorToUser(cursor);
+                userList.add(u);
             } while (cursor.moveToNext());
         }
 

@@ -4,30 +4,54 @@ package northeastern.is4300.pettasktracker.data;
  */
 
 public class Task {
+    private long id;
     private String type;
     private String taskTime;
     private String repeat;
-    private Pet pet;
-    private User user;
 
-    public Task(String type, Pet pet, User user, String taskTime, String repeat){
-        this.pet = pet;
+    public Task() {
+        this.id = 0;
+        this.type = new String();
+        this.taskTime = new String();
+        this.repeat = new String();
+    }
+
+    public Task(String type, String taskTime, String repeat){
         this.taskTime = taskTime;
-        this.user = user;
         this.type = type;
         this.repeat = repeat;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public long getId() {
+        return id;
     }
 
     public String getType() {
         return type;
     }
 
+    public void setType(String type) {
+        this.type = type;
+    }
+
     public String getTaskTime() {
         return taskTime;
     }
 
+    public void setTaskTime(String taskTime) {
+        this.taskTime = taskTime;
+    }
+
     public String getRepeat() {
         return repeat;
+    }
+
+    public void setRepeat(String repeat) {
+        this.repeat = repeat;
     }
 
     @Override

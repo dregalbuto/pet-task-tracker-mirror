@@ -6,12 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Spinner;
 
-import northeastern.is4300.pettasktracker.R;
-import northeastern.is4300.pettasktracker.object.Data;
-import northeastern.is4300.pettasktracker.object.Pet;
+import northeastern.is4300.pettasktracker.data.Data;
 
 public class AddTaskActivity extends AppCompatActivity {
 
@@ -56,13 +53,24 @@ public class AddTaskActivity extends AppCompatActivity {
         confirmationButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
+                Spinner spinner1 = (Spinner) findViewById(R.id.spinner_task_type);
+                String taskType = spinner1.getSelectedItem().toString();
+                Spinner spinner3 = (Spinner) findViewById(R.id.spinner_task_pet);
+                String pet = spinner3.getSelectedItem().toString();
+                Spinner spinner2 = (Spinner) findViewById(R.id.spinner_task_user);
+                String user = spinner2.getSelectedItem().toString();
+                Spinner spinner4 = (Spinner) findViewById(R.id.spinner_task_time);
+                String time = spinner4.getSelectedItem().toString();
+                Spinner spinner5 = (Spinner) findViewById(R.id.spinner_task_repeat);
+                String repeat = spinner5.getSelectedItem().toString();
+
+                Data d = (Data) getApplication();
+                d.addTask(taskType, d.getPet(pet), d.getUser(user), time, repeat);
 
                 confirmationButton.setText("Success!");
 
-                /*
                 Intent myIntent = new Intent(AddTaskActivity.this, MainActivity.class);
                 startActivity(myIntent);
-                */
             }
         });
     }
