@@ -9,7 +9,8 @@ import org.junit.runners.Suite;
 @Suite.SuiteClasses({
         PetDatabaseTest.class,
         TaskDatabaseTest.class,
-        UserDatabaseTest.class })
+        UserDatabaseTest.class,
+        ComboDatabaseTest.class })
 
 public class DatabaseTestSuite {
 }
