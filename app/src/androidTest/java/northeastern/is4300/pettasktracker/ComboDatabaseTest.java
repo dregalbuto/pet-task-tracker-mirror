@@ -100,6 +100,11 @@ public class ComboDatabaseTest {
         assertNotNull(newPet);
         assertEquals(newPet.getName(), "Fluffy");
 
+        User newUser = joinsRepository.getUserByTask(task);
+
+        assertNotNull(newUser);
+        assertEquals(newUser.getName(), "Diana");
+
     }
 
 }

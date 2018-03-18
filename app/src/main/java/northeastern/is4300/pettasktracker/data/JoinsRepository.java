@@ -54,4 +54,34 @@ public class JoinsRepository {
         return p;
     }
 
+    public User getUserByTask(Task task) {
+        long taskId = task.getId();
+        User u = new User("NOT FOUND", 0);
+
+        String selectQuery = "SELECT "
+                + UserRepository.TABLE_USERS + "." + UserRepository.KEY_ID
+                + ", "
+                + UserRepository.TABLE_USERS + "." + UserRepository.KEY_USER_NAME
+                + ", "
+                + UserRepository.TABLE_USERS + "." + UserRepository.KEY_USER_ISADMIN
+                + " FROM " + UserRepository.TABLE_USERS
+                + " JOIN " + TaskRepository.TABLE_TASKS
+                + " ON " + TaskRepository.TABLE_TASKS + "." + TaskRepository.KEY_PET_ID
+                + " = " + UserRepository.TABLE_USERS + "." + UserRepository.KEY_ID
+                + " WHERE " + TaskRepository.TABLE_TASKS + "." + TaskRepository.KEY_ID
+                + " = " + taskId + ";";
+        Cursor cursor = database.rawQuery(selectQuery, null);
+
+        if (cursor.moveToFirst()) {
+            long id = cursor.getLong(0);
+            String name = cursor.getString(1);
+            int isAdmin = cursor.getInt(2);
+            u.setId(id);
+            u.setName(name);
+            u.setIsAdmin(isAdmin);
+        }
+
+        return u;
+    }
+
 }

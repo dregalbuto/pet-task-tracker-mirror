@@ -17,7 +17,7 @@ public class UserRepository {
     private SQLiteDatabase database;
 
     static final String TABLE_USERS = "users";
-    private static final String KEY_ID = "id";
+    static final String KEY_ID = "id";
     static final String KEY_USER_NAME = "name";
     static final String KEY_USER_ISADMIN = "is_admin";
 
