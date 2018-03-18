@@ -46,7 +46,7 @@ public class UserDatabaseTest {
 
     @Test
     public void testShouldAddUser() throws Exception {
-        userRepository.insert(new User("Diana", 1));
+        userRepository.insertAndSetId(new User("Diana", 1));
         List<User> users = userRepository.getUserListAsUsers();
 
         assertThat(users.size(), is(1));
@@ -63,7 +63,7 @@ public class UserDatabaseTest {
 
     @Test
     public void testDeleteOnlyOne() {
-        userRepository.insert(new User("Diana", 1));
+        userRepository.insertAndSetId(new User("Diana", 1));
         List<User> users = userRepository.getUserListAsUsers();
 
         assertThat(users.size(), is(1));
@@ -77,9 +77,9 @@ public class UserDatabaseTest {
     @Test
     public void testAddAndDelete() {
         userRepository.deleteAll();
-        userRepository.insert(new User("Fluffy", 1));
-        userRepository.insert(new User("Bruno", 0));
-        userRepository.insert(new User("Pusheen", 0));
+        userRepository.insertAndSetId(new User("Fluffy", 1));
+        userRepository.insertAndSetId(new User("Bruno", 0));
+        userRepository.insertAndSetId(new User("Pusheen", 0));
 
         List<User> users = userRepository.getUserListAsUsers();
         assertThat(users.size(), is(3));
@@ -93,9 +93,9 @@ public class UserDatabaseTest {
 
     @Test
     public void testGetByName() {
-        userRepository.insert(new User("Fluffy", 1));
-        userRepository.insert(new User("Bruno", 0));
-        userRepository.insert(new User("Pusheen", 0));
+        userRepository.insertAndSetId(new User("Fluffy", 1));
+        userRepository.insertAndSetId(new User("Bruno", 0));
+        userRepository.insertAndSetId(new User("Pusheen", 0));
 
         User user = userRepository.getUserByName("Fluffy");
 

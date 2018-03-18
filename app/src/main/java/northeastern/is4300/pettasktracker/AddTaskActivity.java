@@ -79,7 +79,7 @@ public class AddTaskActivity extends AppCompatActivity {
                 long userId = userRepository.getUserByName(user).getId();
                 task.setUserId(userId);
 
-                taskRepository.insert(task);
+                taskRepository.insertAndSetId(task);
 
                 confirmationButton.setText("Success!");
 

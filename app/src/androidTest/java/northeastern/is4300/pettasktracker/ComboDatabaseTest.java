@@ -8,8 +8,11 @@ import org.junit.Test;
 
 import java.util.List;
 
+import northeastern.is4300.pettasktracker.data.JoinsRepository;
 import northeastern.is4300.pettasktracker.data.Pet;
 import northeastern.is4300.pettasktracker.data.PetRepository;
+import northeastern.is4300.pettasktracker.data.Task;
+import northeastern.is4300.pettasktracker.data.TaskRepository;
 import northeastern.is4300.pettasktracker.data.User;
 import northeastern.is4300.pettasktracker.data.UserRepository;
 
@@ -27,6 +30,8 @@ public class ComboDatabaseTest {
 
     private UserRepository userRepository;
     private PetRepository petRepository;
+    private TaskRepository taskRepository;
+    private JoinsRepository joinsRepository;
 
     @Before
     public void setUp(){
@@ -37,12 +42,21 @@ public class ComboDatabaseTest {
         petRepository = new PetRepository(InstrumentationRegistry.getTargetContext());
         petRepository.open();
         petRepository.deleteAll();
+
+        taskRepository = new TaskRepository(InstrumentationRegistry.getTargetContext());
+        taskRepository.open();
+        taskRepository.deleteAll();
+
+        joinsRepository = new JoinsRepository(InstrumentationRegistry.getTargetContext());
+        joinsRepository.open();
     }
 
     @After
     public void finish() {
         userRepository.close();
         petRepository.close();
+        taskRepository.close();
+        joinsRepository.close();
     }
 
     @Test
@@ -52,9 +66,9 @@ public class ComboDatabaseTest {
     }
 
     @Test
-    public void testShouldAddUser() throws Exception {
-        userRepository.insert(new User("Diana", 1));
-        petRepository.insert(new Pet("Fluffy", "Cat"));
+    public void testAddToBoth() {
+        userRepository.insertAndSetId(new User("Diana", 1));
+        petRepository.insertAndSetId(new Pet("Fluffy", "Cat"));
         List<User> users = userRepository.getUserListAsUsers();
         List<Pet> pets = petRepository.getPetListAsPets();
 
@@ -65,6 +79,26 @@ public class ComboDatabaseTest {
         assertThat(pets.size(), is(1));
         assertTrue(pets.get(0).getName().equals("Fluffy"));
         assertTrue(pets.get(0).getType().equals("Cat"));
+
+    }
+
+    @Test
+    public void testAddTaskGetUserAndPet() {
+        Pet pet = new Pet("Fluffy", "Cat");
+        petRepository.insertAndSetId(pet);
+
+        User user = new User("Diana", 1);
+        userRepository.insertAndSetId(user);
+
+        Task task = new Task("Walk", "12:00", "Daily");
+        task.setUserId(user.getId());
+        task.setPetId(pet.getId());
+        taskRepository.insertAndSetId(task);
+
+        Pet newPet = joinsRepository.getPetByTask(task);
+
+        assertNotNull(newPet);
+        assertEquals(newPet.getName(), "Fluffy");
 
     }
 

@@ -17,7 +17,7 @@ public class TaskRepository {
     private SQLiteDatabase database;
 
     static final String TABLE_TASKS = "tasks";
-    private static final String KEY_ID = "id";
+    static final String KEY_ID = "id";
     static final String KEY_TASK_TYPE = "type";
     static final String KEY_TASK_TIME = "time";
     static final String KEY_TASK_REPEAT = "repeat";
@@ -36,14 +36,16 @@ public class TaskRepository {
         dbHelper.close();
     }
 
-    public int insert(Task task) {
+    public long insertAndSetId(Task task) {
         ContentValues values = new ContentValues();
         values.put(KEY_TASK_TYPE, task.getType());
         values.put(KEY_TASK_TIME, task.getTaskTime());
         values.put(KEY_TASK_REPEAT, task.getRepeat());
         values.put(KEY_PET_ID, task.getPetId());
         values.put(KEY_USER_ID, task.getUserId());
-        return (int) database.insert(TABLE_TASKS, null, values);
+        long id = database.insert(TABLE_TASKS, null, values);
+        task.setId(id);
+        return id;
     }
 
     public void delete(long taskId) {

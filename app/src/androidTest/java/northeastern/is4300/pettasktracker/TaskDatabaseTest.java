@@ -45,7 +45,7 @@ public class TaskDatabaseTest {
 
     @Test
     public void testShouldAddTask() throws Exception {
-        taskRepository.insert(new Task("Walk", "12:00", "Daily"));
+        taskRepository.insertAndSetId(new Task("Walk", "12:00", "Daily"));
         List<Task> tasks = taskRepository.getTaskListAsTasks();
 
         assertThat(tasks.size(), is(1));
@@ -63,7 +63,7 @@ public class TaskDatabaseTest {
 
     @Test
     public void testDeleteOnlyOne() {
-        taskRepository.insert(new Task("Walk", "12:00", "Daily"));
+        taskRepository.insertAndSetId(new Task("Walk", "12:00", "Daily"));
         List<Task> tasks = taskRepository.getTaskListAsTasks();
 
         assertThat(tasks.size(), is(1));
@@ -77,9 +77,9 @@ public class TaskDatabaseTest {
     @Test
     public void testAddAndDelete() {
         taskRepository.deleteAll();
-        taskRepository.insert(new Task("Walk", "12:00", "Daily"));
-        taskRepository.insert(new Task("Food", "15:00", "Weekly"));
-        taskRepository.insert(new Task("Medication", "03:00", "Daily"));
+        taskRepository.insertAndSetId(new Task("Walk", "12:00", "Daily"));
+        taskRepository.insertAndSetId(new Task("Food", "15:00", "Weekly"));
+        taskRepository.insertAndSetId(new Task("Medication", "03:00", "Daily"));
 
         List<Task> tasks = taskRepository.getTaskListAsTasks();
         assertThat(tasks.size(), is(3));

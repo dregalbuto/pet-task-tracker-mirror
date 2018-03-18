@@ -45,7 +45,7 @@ public class PetDatabaseTest {
 
     @Test
     public void testShouldAddPet() throws Exception {
-        petRepository.insert(new Pet("Fluffy", "Cat"));
+        petRepository.insertAndSetId(new Pet("Fluffy", "Cat"));
         List<Pet> pets = petRepository.getPetListAsPets();
 
         assertThat(pets.size(), is(1));
@@ -62,7 +62,7 @@ public class PetDatabaseTest {
 
     @Test
     public void testDeleteOnlyOne() {
-        petRepository.insert(new Pet("Fluffy", "Cat"));
+        petRepository.insertAndSetId(new Pet("Fluffy", "Cat"));
         List<Pet> pets = petRepository.getPetListAsPets();
 
         assertThat(pets.size(), is(1));
@@ -76,9 +76,9 @@ public class PetDatabaseTest {
     @Test
     public void testAddAndDelete() {
         petRepository.deleteAll();
-        petRepository.insert(new Pet("Fluffy", "Cat"));
-        petRepository.insert(new Pet("Bruno", "Dog"));
-        petRepository.insert(new Pet("Pusheen", "Cat"));
+        petRepository.insertAndSetId(new Pet("Fluffy", "Cat"));
+        petRepository.insertAndSetId(new Pet("Bruno", "Dog"));
+        petRepository.insertAndSetId(new Pet("Pusheen", "Cat"));
 
         List<Pet> pets = petRepository.getPetListAsPets();
         assertThat(pets.size(), is(3));
@@ -92,9 +92,9 @@ public class PetDatabaseTest {
 
     @Test
     public void testGetByName() {
-        petRepository.insert(new Pet("Fluffy", "Cat"));
-        petRepository.insert(new Pet("Bruno", "Dog"));
-        petRepository.insert(new Pet("Pusheen", "Cat"));
+        petRepository.insertAndSetId(new Pet("Fluffy", "Cat"));
+        petRepository.insertAndSetId(new Pet("Bruno", "Dog"));
+        petRepository.insertAndSetId(new Pet("Pusheen", "Cat"));
 
         Pet pet = petRepository.getPetByName("Fluffy");
 

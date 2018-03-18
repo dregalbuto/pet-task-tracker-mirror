@@ -33,7 +33,7 @@ public class UserRepository {
         dbHelper.close();
     }
 
-    public long insert(User user) {
+    public long insertAndSetId(User user) {
         ContentValues values = new ContentValues();
         values.put(KEY_USER_NAME, user.getName());
         values.put(KEY_USER_ISADMIN, user.getIsAdmin());

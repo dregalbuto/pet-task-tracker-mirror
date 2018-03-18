@@ -19,7 +19,7 @@ public class PetRepository {
     private SQLiteDatabase database;
 
     static final String TABLE_PETS = "pets";
-    private static final String KEY_ID = "id";
+    static final String KEY_ID = "id";
     static final String KEY_PET_NAME = "name";
     static final String KEY_PET_TYPE = "type";
 
@@ -35,7 +35,7 @@ public class PetRepository {
         dbHelper.close();
     }
 
-    public long insert(Pet pet) {
+    public long insertAndSetId(Pet pet) {
         ContentValues values = new ContentValues();
         values.put(KEY_PET_NAME, pet.getName());
         values.put(KEY_PET_TYPE, pet.getType());

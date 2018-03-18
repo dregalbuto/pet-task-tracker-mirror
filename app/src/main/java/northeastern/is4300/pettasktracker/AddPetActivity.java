@@ -46,7 +46,7 @@ public class AddPetActivity extends AppCompatActivity {
                 String petType = petTypeBox.getSelectedItem().toString();
 
                 Pet pet = new Pet(petName, petType);
-                petRepository.insert(pet);
+                petRepository.insertAndSetId(pet);
 
                 Intent myIntent = new Intent(AddPetActivity.this, MainActivity.class);
                 startActivity(myIntent);
