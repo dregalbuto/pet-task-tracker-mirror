@@ -9,54 +9,18 @@
 
     <TextView
         android:id="@+id/message_users2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:text="@string/title_activity_pets"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:gravity="top"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:padding="2dp"
+        android:text="@string/title_activity_pets"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/pets_list_view"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.32">
-
-        <Button
-            android:id="@+id/pet_button_1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:color/background_light"
-            android:drawableLeft="@drawable/cat_icon_100"
-            android:padding="5dp"
-            android:text="@string/pet_name_1"
-            android:textAppearance="@style/TextAppearance.AppCompat"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="46dp" />
-
-        <Button
-            android:id="@+id/pet_button_2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:color/background_light"
-            android:drawableLeft="@drawable/dog_icon_100"
-            android:padding="5dp"
-            android:text="@string/pet_name_2"
-            android:textAppearance="@style/TextAppearance.AppCompat"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="46dp" />
-
-    </LinearLayout>
+        app:layout_constraintVertical_bias="0.6" />
 
     <Button
         android:id="@+id/button_add_pet"
@@ -67,6 +31,19 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+        app:layout_constraintTop_toBottomOf="@+id/pets_list_view"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <ListView
+        android:id="@+id/pets_list_view"
+        android:layout_width="0dp"
+        android:layout_height="400dp"
+        android:layout_marginBottom="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.696" />
 
 </android.support.constraint.ConstraintLayout>

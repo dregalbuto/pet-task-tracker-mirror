@@ -19,7 +19,7 @@ public class PetRepository {
     private SQLiteDatabase database;
 
     static final String TABLE_PETS = "pets";
-    static final String KEY_ID = "id";
+    static final String KEY_ID = "_id";
     static final String KEY_PET_NAME = "name";
     static final String KEY_PET_TYPE = "type";
 
@@ -113,6 +113,16 @@ public class PetRepository {
 
         cursor.close();
         return petList;
+    }
+
+    public Cursor getPetsCursor() {
+        String selectQuery =  "SELECT  " +
+                KEY_ID + "," +
+                KEY_PET_NAME + "," +
+                KEY_PET_TYPE +
+                " FROM " + TABLE_PETS;
+        Cursor cursor = database.rawQuery(selectQuery, null);
+        return cursor;
     }
 
     private Pet cursorToPet(Cursor cursor) {

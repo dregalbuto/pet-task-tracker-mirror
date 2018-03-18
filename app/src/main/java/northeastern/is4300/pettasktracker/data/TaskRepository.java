@@ -17,7 +17,7 @@ public class TaskRepository {
     private SQLiteDatabase database;
 
     static final String TABLE_TASKS = "tasks";
-    static final String KEY_ID = "id";
+    static final String KEY_ID = "_id";
     static final String KEY_TASK_TYPE = "type";
     static final String KEY_TASK_TIME = "time";
     static final String KEY_TASK_REPEAT = "repeat";

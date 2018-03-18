@@ -31,6 +31,7 @@ public class PetDatabaseTest {
     public void setUp(){
         petRepository = new PetRepository(InstrumentationRegistry.getTargetContext());
         petRepository.open();
+        petRepository.deleteAll();
     }
 
     @After

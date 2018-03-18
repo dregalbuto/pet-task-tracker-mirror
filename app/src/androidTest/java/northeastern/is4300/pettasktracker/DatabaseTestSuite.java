@@ -13,4 +13,5 @@ import org.junit.runners.Suite;
         ComboDatabaseTest.class })
 
 public class DatabaseTestSuite {
+    // blank
 }

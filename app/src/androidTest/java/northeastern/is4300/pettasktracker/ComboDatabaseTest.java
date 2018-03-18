@@ -53,8 +53,11 @@ public class ComboDatabaseTest {
 
     @After
     public void finish() {
+        userRepository.deleteAll();
         userRepository.close();
+        petRepository.deleteAll();
         petRepository.close();
+        taskRepository.deleteAll();
         taskRepository.close();
         joinsRepository.close();
     }
@@ -100,7 +103,11 @@ public class ComboDatabaseTest {
         assertNotNull(newPet);
         assertEquals(newPet.getName(), "Fluffy");
 
+        User newUser2 = userRepository.getUserByName("Diana");
+        assertNotNull(newUser2);
+
         User newUser = joinsRepository.getUserByTask(task);
+
 
         assertNotNull(newUser);
         assertEquals(newUser.getName(), "Diana");

@@ -24,6 +24,9 @@ public class AddPetActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        petRepository = new PetRepository(this);
+        petRepository.open();
+
         setContentView(R.layout.activity_add_pet);
 
         /* Set up drop-down menu (spinner) */

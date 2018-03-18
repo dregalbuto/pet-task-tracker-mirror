@@ -66,7 +66,7 @@ public class JoinsRepository {
                 + UserRepository.TABLE_USERS + "." + UserRepository.KEY_USER_ISADMIN
                 + " FROM " + UserRepository.TABLE_USERS
                 + " JOIN " + TaskRepository.TABLE_TASKS
-                + " ON " + TaskRepository.TABLE_TASKS + "." + TaskRepository.KEY_PET_ID
+                + " ON " + TaskRepository.TABLE_TASKS + "." + TaskRepository.KEY_USER_ID
                 + " = " + UserRepository.TABLE_USERS + "." + UserRepository.KEY_ID
                 + " WHERE " + TaskRepository.TABLE_TASKS + "." + TaskRepository.KEY_ID
                 + " = " + taskId + ";";
