@@ -22,7 +22,7 @@ public class User {
     public User(String name, int isAdmin) {
         this.name = name;
         this.isAdmin = isAdmin;
-        this.tasks = new ArrayList<>();
+        this.tasks = null;
     }
 
     public User() {
@@ -54,6 +54,18 @@ public class User {
 
     public void setIsAdmin(int isAdmin) {
         this.isAdmin = isAdmin;
+    }
+
+    public void setTasks(ArrayList<Task> tasks) {
+        this.tasks = tasks;
+    }
+
+    public ArrayList<Task> getTasks() {
+        return this.tasks;
+    }
+
+    public void addTask(Task task) {
+        this.tasks.add(task);
     }
 
     @Override

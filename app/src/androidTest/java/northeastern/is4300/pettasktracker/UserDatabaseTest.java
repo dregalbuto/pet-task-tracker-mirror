@@ -91,4 +91,15 @@ public class UserDatabaseTest {
         assertThat(users.size(), is(1));
     }
 
+    @Test
+    public void testGetByName() {
+        userRepository.insert(new User("Fluffy", 1));
+        userRepository.insert(new User("Bruno", 0));
+        userRepository.insert(new User("Pusheen", 0));
+
+        User user = userRepository.getUserByName("Fluffy");
+
+        assertEquals(user.getIsAdmin(), 1);
+    }
+
 }

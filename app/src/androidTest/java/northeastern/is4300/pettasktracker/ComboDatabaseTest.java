@@ -32,15 +32,15 @@ public class ComboDatabaseTest {
     public void setUp(){
         userRepository = new UserRepository(InstrumentationRegistry.getTargetContext());
         userRepository.open();
+        userRepository.deleteAll();
 
         petRepository = new PetRepository(InstrumentationRegistry.getTargetContext());
         petRepository.open();
+        petRepository.deleteAll();
     }
 
     @After
     public void finish() {
-        userRepository.deleteAll();
-        petRepository.deleteAll();
         userRepository.close();
         petRepository.close();
     }

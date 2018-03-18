@@ -53,6 +53,42 @@ public class PetRepository {
         database.delete(TABLE_PETS, null, null);
     }
 
+    public Pet getPetByName(String name) {
+        Pet p = null;
+        String selectQuery = "SELECT * FROM " + TABLE_PETS
+                + " WHERE " + KEY_PET_NAME
+                + "= \"" + name + "\"";
+        Cursor cursor = database.rawQuery(selectQuery, null);
+
+        if (cursor.moveToFirst()) {
+            long id = cursor.getLong(0);
+            String type = cursor.getString(2);
+            p = new Pet(name, type);
+            p.setId(id);
+
+        }
+
+        return p;
+    }
+
+    public Pet getPetById(long petId) {
+        Pet p = null;
+        String selectQuery = "SELECT * FROM " + TABLE_PETS
+                + " WHERE " + KEY_ID
+                + "= " + petId + ";";
+        Cursor cursor = database.rawQuery(selectQuery, null);
+
+        if (cursor.moveToFirst()) {
+            long id = cursor.getLong(0);
+            String name = cursor.getString(1);
+            String type = cursor.getString(2);
+            p = new Pet(name, type);
+            p.setId(id);
+        }
+
+        return p;
+    }
+
     public ArrayList<HashMap<String, String>> getPetList() {
         String selectQuery =  "SELECT  " +
                 KEY_ID + "," +

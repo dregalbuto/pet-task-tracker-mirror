@@ -51,6 +51,43 @@ public class UserRepository {
         database.delete(TABLE_USERS, null, null);
     }
 
+    public User getUserByName(String name) {
+        User u = null;
+        String selectQuery = "SELECT * FROM " + TABLE_USERS
+                + " WHERE " + KEY_USER_NAME
+                + " = \"" + name + "\"";
+        Cursor cursor = database.rawQuery(selectQuery, null);
+
+        if (cursor.moveToFirst()) {
+            long id = cursor.getLong(0);
+            int isAdmin = cursor.getInt(2);
+            u = new User();
+            u.setId(id);
+            u.setName(name);
+            u.setIsAdmin(isAdmin);
+        }
+
+        return u;
+    }
+
+    public User getUserById(long userId) {
+        User u = null;
+        String selectQuery = "SELECT * FROM " + TABLE_USERS
+                + " WHERE " + KEY_ID
+                + "= " + userId + ";";
+        Cursor cursor = database.rawQuery(selectQuery, null);
+
+        if (cursor.moveToFirst()) {
+            long id = cursor.getLong(0);
+            String name = cursor.getString(1);
+            int isAdmin = cursor.getInt(2);
+            u = new User(name, isAdmin);
+            u.setId(id);
+        }
+
+        return u;
+    }
+
     public ArrayList<HashMap<String, String>> getUserList() {
         String selectQuery =  "SELECT  " +
                 KEY_ID + "," +

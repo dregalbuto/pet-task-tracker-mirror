@@ -1,16 +1,23 @@
 package northeastern.is4300.pettasktracker;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
-import northeastern.is4300.pettasktracker.data.Data;
+import northeastern.is4300.pettasktracker.data.PetRepository;
+import northeastern.is4300.pettasktracker.data.Task;
+import northeastern.is4300.pettasktracker.data.TaskRepository;
+import northeastern.is4300.pettasktracker.data.UserRepository;
 
 public class AddTaskActivity extends AppCompatActivity {
+
+    private TaskRepository taskRepository;
+    private PetRepository petRepository;
+    private UserRepository userRepository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,8 +71,15 @@ public class AddTaskActivity extends AppCompatActivity {
                 Spinner spinner5 = (Spinner) findViewById(R.id.spinner_task_repeat);
                 String repeat = spinner5.getSelectedItem().toString();
 
-                Data d = (Data) getApplication();
-                d.addTask(taskType, d.getPet(pet), d.getUser(user), time, repeat);
+                Task task = new Task(taskType, time, repeat);
+
+                long petId = petRepository.getPetByName(pet).getId();
+                task.setPetId(petId);
+
+                long userId = userRepository.getUserByName(user).getId();
+                task.setUserId(userId);
+
+                taskRepository.insert(task);
 
                 confirmationButton.setText("Success!");
 

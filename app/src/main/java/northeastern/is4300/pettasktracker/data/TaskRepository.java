@@ -21,6 +21,8 @@ public class TaskRepository {
     static final String KEY_TASK_TYPE = "type";
     static final String KEY_TASK_TIME = "time";
     static final String KEY_TASK_REPEAT = "repeat";
+    static final String KEY_PET_ID = "pet_id";
+    static final String KEY_USER_ID = "user_id";
 
     public TaskRepository(Context c) {
         this.dbHelper = new DatabaseHelper(c);
@@ -39,6 +41,8 @@ public class TaskRepository {
         values.put(KEY_TASK_TYPE, task.getType());
         values.put(KEY_TASK_TIME, task.getTaskTime());
         values.put(KEY_TASK_REPEAT, task.getRepeat());
+        values.put(KEY_PET_ID, task.getPetId());
+        values.put(KEY_USER_ID, task.getUserId());
         return (int) database.insert(TABLE_TASKS, null, values);
     }
 
@@ -56,7 +60,9 @@ public class TaskRepository {
                 KEY_ID + "," +
                 KEY_TASK_TYPE + "," +
                 KEY_TASK_TIME + "," +
-                KEY_TASK_REPEAT +
+                KEY_TASK_REPEAT + "," +
+                KEY_PET_ID + "," +
+                KEY_USER_ID +
                 " FROM " + TABLE_TASKS;
 
         ArrayList<HashMap<String, String>> taskList = new ArrayList<>();
@@ -70,6 +76,8 @@ public class TaskRepository {
                 task.put("type", cursor.getString(cursor.getColumnIndex(KEY_TASK_TYPE)));
                 task.put("time", cursor.getString(cursor.getColumnIndex(KEY_TASK_TIME)));
                 task.put("repeat", cursor.getString(cursor.getColumnIndex(KEY_TASK_REPEAT)));
+                task.put("petId", cursor.getString(cursor.getColumnIndex(KEY_PET_ID)));
+                task.put("userId", cursor.getString(cursor.getColumnIndex(KEY_USER_ID)));
                 taskList.add(task);
 
             } while (cursor.moveToNext());
@@ -85,6 +93,8 @@ public class TaskRepository {
         task.setType(cursor.getString(1));
         task.setTaskTime(cursor.getString(2));
         task.setRepeat(cursor.getString(3));
+        task.setPetId(cursor.getLong(4));
+        task.setUserId(cursor.getLong(5));
         return task;
     }
 
@@ -93,7 +103,9 @@ public class TaskRepository {
                 KEY_ID + "," +
                 KEY_TASK_TYPE + "," +
                 KEY_TASK_TIME + "," +
-                KEY_TASK_REPEAT +
+                KEY_TASK_REPEAT + "," +
+                KEY_PET_ID + "," +
+                KEY_USER_ID +
                 " FROM " + TABLE_TASKS;
 
         ArrayList<Task> taskList = new ArrayList<>();

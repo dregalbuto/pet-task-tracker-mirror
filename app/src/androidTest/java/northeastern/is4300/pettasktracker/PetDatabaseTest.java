@@ -13,6 +13,7 @@ import java.util.List;
 import northeastern.is4300.pettasktracker.data.Pet;
 import northeastern.is4300.pettasktracker.data.PetRepository;
 
+import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNotNull;
 import static junit.framework.Assert.assertTrue;
 import static org.hamcrest.CoreMatchers.is;
@@ -30,7 +31,6 @@ public class PetDatabaseTest {
     public void setUp(){
         petRepository = new PetRepository(InstrumentationRegistry.getTargetContext());
         petRepository.open();
-        petRepository.deleteAll();
     }
 
     @After
@@ -67,7 +67,7 @@ public class PetDatabaseTest {
 
         assertThat(pets.size(), is(1));
 
-        petRepository.delete(pets.get(0).getID());
+        petRepository.delete(pets.get(0).getId());
         pets = petRepository.getPetListAsPets();
 
         assertThat(pets.size(), is(0));
@@ -83,11 +83,22 @@ public class PetDatabaseTest {
         List<Pet> pets = petRepository.getPetListAsPets();
         assertThat(pets.size(), is(3));
 
-        petRepository.delete(pets.get(0).getID());
-        petRepository.delete(pets.get(1).getID());
+        petRepository.delete(pets.get(0).getId());
+        petRepository.delete(pets.get(1).getId());
 
         pets = petRepository.getPetListAsPets();
         assertThat(pets.size(), is(1));
+    }
+
+    @Test
+    public void testGetByName() {
+        petRepository.insert(new Pet("Fluffy", "Cat"));
+        petRepository.insert(new Pet("Bruno", "Dog"));
+        petRepository.insert(new Pet("Pusheen", "Cat"));
+
+        Pet pet = petRepository.getPetByName("Fluffy");
+
+       assertEquals(pet.getType(), "Cat");
     }
 
 }

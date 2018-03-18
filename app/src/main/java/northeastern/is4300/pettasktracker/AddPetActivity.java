@@ -1,17 +1,20 @@
 package northeastern.is4300.pettasktracker;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-import northeastern.is4300.pettasktracker.data.Data;
+import northeastern.is4300.pettasktracker.data.Pet;
+import northeastern.is4300.pettasktracker.data.PetRepository;
 
 public class AddPetActivity extends AppCompatActivity {
+
+    private PetRepository petRepository;
 
     @Override
     public void onBackPressed() {
@@ -35,17 +38,15 @@ public class AddPetActivity extends AppCompatActivity {
         confirmationButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-                /** Hacky way to save a pet **/
+                /** Save a pet **/
                 EditText petNameBox = findViewById(R.id.edit_pet_name);
                 String petName = petNameBox.getText().toString();
 
                 Spinner petTypeBox = findViewById(R.id.spinner_pet_type);
                 String petType = petTypeBox.getSelectedItem().toString();
 
-                Data d = (Data) getApplication();
-                d.addPet(petName, petType);
-
-                confirmationButton.setText("Success!");
+                Pet pet = new Pet(petName, petType);
+                petRepository.insert(pet);
 
                 Intent myIntent = new Intent(AddPetActivity.this, MainActivity.class);
                 startActivity(myIntent);

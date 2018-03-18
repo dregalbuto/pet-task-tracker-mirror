@@ -5,9 +5,8 @@ import android.media.Image;
 import java.util.ArrayList;
 
 /**
- *
+ * Class for a Pet
  */
-
 public class Pet {
 
     private long id;
@@ -30,7 +29,7 @@ public class Pet {
         this.avatar = null;
     }
 
-    public long getID() {
+    public long getId() {
         return id;
     }
 
@@ -56,6 +55,14 @@ public class Pet {
 
     public ArrayList<Task> getTasks() {
         return this.tasks;
+    }
+
+    public void setTasks(ArrayList<Task> tasks) {
+        this.tasks = tasks;
+    }
+
+    public void addTask(Task task) {
+        this.tasks.add(task);
     }
 
     @Override
