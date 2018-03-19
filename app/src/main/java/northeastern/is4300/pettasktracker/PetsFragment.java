@@ -7,10 +7,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
+import northeastern.is4300.pettasktracker.adapters.PetCursorAdapter;
 import northeastern.is4300.pettasktracker.data.PetRepository;
 
 public class PetsFragment extends Fragment {
@@ -34,6 +34,7 @@ public class PetsFragment extends Fragment {
         // Find ListView to populate
         final ListView listView = (ListView) v.findViewById(R.id.pets_list_view);
 
+        /*
         String[] menuItems = {"Test1", "Test2"};
 
         ArrayAdapter<String> listViewAdapter = new ArrayAdapter<String>(
@@ -44,13 +45,13 @@ public class PetsFragment extends Fragment {
 
         listView.setAdapter(listViewAdapter);
 
-        /*
+        */
 
         // Setup cursor adapter using cursor from last step
-        final PetCursorAdapter petsAdapter = new PetCursorAdapter(this.getContext(), R.layout.item_pet, petsCursor);
+        final PetCursorAdapter petsAdapter = new PetCursorAdapter(getActivity(), petsCursor);
 
-        lvItems.setAdapter(petsAdapter);
-        */
+        listView.setAdapter(petsAdapter);
+        petsAdapter.changeCursor(petsCursor);
 
         /* Set up Add Pet button */
         Button addPetButton = (Button) v.findViewById(R.id.button_add_pet);
