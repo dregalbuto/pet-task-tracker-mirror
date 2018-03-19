@@ -9,6 +9,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import northeastern.is4300.pettasktracker.PetsFragment;
+import northeastern.is4300.pettasktracker.R;
+import northeastern.is4300.pettasktracker.TimelineFragment;
+import northeastern.is4300.pettasktracker.UsersFragment;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
