@@ -6,6 +6,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import northeastern.is4300.pettasktracker.data.JoinsRepository;
@@ -73,7 +74,7 @@ public class ComboDatabaseTest {
         userRepository.insertAndSetId(new User("Diana", 1));
         petRepository.insertAndSetId(new Pet("Fluffy", "Cat"));
         List<User> users = userRepository.getUserListAsUsers();
-        List<Pet> pets = petRepository.getPetListAsPets();
+        ArrayList<Pet> pets = petRepository.cursorToPetList(petRepository.getPetsCursor());
 
         assertThat(users.size(), is(1));
         assertTrue(users.get(0).getName().equals("Diana"));

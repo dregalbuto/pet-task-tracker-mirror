@@ -27,14 +27,15 @@ public class PetsFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        petRepository = new PetRepository(this.getContext());
-        petRepository.open();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_pets, container, false);
+
+        petRepository = new PetRepository(this.getContext());
+        petRepository.open();
 
         Cursor petsCursor = petRepository.getPetsCursor();
         // Find ListView to populate

@@ -42,7 +42,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(PetRepository.KEY_PET_NAME, "Fluffy");
         values.put(PetRepository.KEY_PET_TYPE, "Cat");
-        db.insert(PetRepository.TABLE_PETS, null, values);
+        long l = db.insert(PetRepository.TABLE_PETS, null, values);
 
         values = new ContentValues();
         values.put(PetRepository.KEY_PET_NAME, "Rudy");

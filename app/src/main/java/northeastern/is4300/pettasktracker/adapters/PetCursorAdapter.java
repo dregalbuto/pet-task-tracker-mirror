@@ -28,10 +28,11 @@ public class PetCursorAdapter extends CursorAdapter {
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
         // Find fields to populate in inflated template
-        Button pet_body = (Button) view.findViewById(R.id.pet_button);
+        Button pet_body = (Button) view.findViewById(R.id.pet_list_view_button);
         // Extract properties from cursor
         String name = cursor.getString(1);
         // Populate fields with extracted properties
         pet_body.setText(name);
+
     }
 }

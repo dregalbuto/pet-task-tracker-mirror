@@ -125,33 +125,19 @@ public class PetRepository {
         return cursor;
     }
 
-    private Pet cursorToPet(Cursor cursor) {
-        Pet pet = new Pet();
-        pet.setId(cursor.getLong(0));
-        pet.setName(cursor.getString(1));
-        pet.setType(cursor.getString(2));
-        return pet;
-    }
-
-    public ArrayList<Pet> getPetListAsPets() {
-        String selectQuery =  "SELECT  " +
-                KEY_ID + "," +
-                KEY_PET_NAME + "," +
-                KEY_PET_TYPE +
-                " FROM " + TABLE_PETS;
-
-        ArrayList<Pet> petList = new ArrayList<>();
-        Cursor cursor = database.rawQuery(selectQuery, null);
-
+    public static ArrayList<Pet> cursorToPetList(Cursor cursor) {
+        ArrayList<Pet> pets = new ArrayList<>();
         if (cursor.moveToFirst()) {
             do {
-                Pet p = cursorToPet(cursor);
-                petList.add(p);
+                Pet pet = new Pet();
+                pet.setId(cursor.getLong(0));
+                pet.setName(cursor.getString(1));
+                pet.setType(cursor.getString(2));
+                pets.add(pet);
             } while (cursor.moveToNext());
         }
-
         cursor.close();
-        return petList;
+        return pets;
     }
 
 }

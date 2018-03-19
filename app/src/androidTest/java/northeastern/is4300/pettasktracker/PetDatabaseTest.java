@@ -1,5 +1,6 @@
 package northeastern.is4300.pettasktracker;
 
+import android.database.Cursor;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 
@@ -8,7 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import northeastern.is4300.pettasktracker.data.Pet;
 import northeastern.is4300.pettasktracker.data.PetRepository;
@@ -47,7 +48,7 @@ public class PetDatabaseTest {
     @Test
     public void testShouldAddPet() throws Exception {
         petRepository.insertAndSetId(new Pet("Fluffy", "Cat"));
-        List<Pet> pets = petRepository.getPetListAsPets();
+        ArrayList<Pet> pets = petRepository.cursorToPetList(petRepository.getPetsCursor());
 
         assertThat(pets.size(), is(1));
         assertTrue(pets.get(0).getName().equals("Fluffy"));
@@ -57,19 +58,19 @@ public class PetDatabaseTest {
     @Test
     public void testDeleteAll() {
         petRepository.deleteAll();
-        List<Pet> rate = petRepository.getPetListAsPets();
-        assertThat(rate.size(), is(0));
+        ArrayList<Pet> pets = petRepository.cursorToPetList(petRepository .getPetsCursor());
+        assertThat(pets.size(), is(0));
     }
 
     @Test
     public void testDeleteOnlyOne() {
         petRepository.insertAndSetId(new Pet("Fluffy", "Cat"));
-        List<Pet> pets = petRepository.getPetListAsPets();
+        ArrayList<Pet> pets = petRepository.cursorToPetList(petRepository.getPetsCursor());
 
         assertThat(pets.size(), is(1));
 
         petRepository.delete(pets.get(0).getId());
-        pets = petRepository.getPetListAsPets();
+        pets = petRepository.cursorToPetList(petRepository.getPetsCursor());
 
         assertThat(pets.size(), is(0));
     }
@@ -81,13 +82,13 @@ public class PetDatabaseTest {
         petRepository.insertAndSetId(new Pet("Bruno", "Dog"));
         petRepository.insertAndSetId(new Pet("Pusheen", "Cat"));
 
-        List<Pet> pets = petRepository.getPetListAsPets();
+        ArrayList<Pet> pets = petRepository.cursorToPetList(petRepository.getPetsCursor());
         assertThat(pets.size(), is(3));
 
         petRepository.delete(pets.get(0).getId());
         petRepository.delete(pets.get(1).getId());
 
-        pets = petRepository.getPetListAsPets();
+        pets = petRepository.cursorToPetList(petRepository.getPetsCursor());
         assertThat(pets.size(), is(1));
     }
 
@@ -100,6 +101,18 @@ public class PetDatabaseTest {
         Pet pet = petRepository.getPetByName("Fluffy");
 
        assertEquals(pet.getType(), "Cat");
+    }
+
+    @Test
+    public void testGetCursor() {
+        petRepository.insertAndSetId(new Pet("Fluffy", "Cat"));
+        Cursor c = null;
+        c = petRepository.getPetsCursor();
+        assertNotNull(c);
+        Pet pet = null;
+        pet = PetRepository.cursorToPetList(c).get(0);
+        assertNotNull(pet);
+        assertEquals(pet.getName(), "Fluffy");
     }
 
 }
