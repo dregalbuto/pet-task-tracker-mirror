@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -34,24 +35,18 @@ public class PetsFragment extends Fragment {
         // Find ListView to populate
         final ListView listView = (ListView) v.findViewById(R.id.pets_list_view);
 
-        /*
-        String[] menuItems = {"Test1", "Test2"};
-
-        ArrayAdapter<String> listViewAdapter = new ArrayAdapter<String>(
-                getActivity(),
-                android.R.layout.simple_list_item_1,
-                menuItems
-        );
-
-        listView.setAdapter(listViewAdapter);
-
-        */
-
-        // Setup cursor adapter using cursor from last step
         final PetCursorAdapter petsAdapter = new PetCursorAdapter(getActivity(), petsCursor);
-
         listView.setAdapter(petsAdapter);
         petsAdapter.changeCursor(petsCursor);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                Intent intent = new Intent(getActivity(), ViewPetActivity_Cookie.class);
+                intent.putExtra("PET_INDEX", position);
+                startActivity(intent);
+            }
+        });
 
         /* Set up Add Pet button */
         Button addPetButton = (Button) v.findViewById(R.id.button_add_pet);

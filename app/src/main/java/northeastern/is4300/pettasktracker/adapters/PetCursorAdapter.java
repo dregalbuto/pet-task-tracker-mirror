@@ -11,8 +11,9 @@ import android.widget.CursorAdapter;
 import northeastern.is4300.pettasktracker.R;
 
 /**
- * 
+ *
  */
+
 public class PetCursorAdapter extends CursorAdapter {
 
     public PetCursorAdapter(Context context, Cursor cursor) {
