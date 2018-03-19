@@ -5,8 +5,8 @@ import android.database.Cursor;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.CursorAdapter;
+import android.widget.TextView;
 
 import northeastern.is4300.pettasktracker.R;
 
@@ -29,11 +29,11 @@ public class PetCursorAdapter extends CursorAdapter {
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
         // Find fields to populate in inflated template
-        Button pet_button = (Button) view.findViewById(R.id.pet_list_button);
+        TextView pet_name = (TextView) view.findViewById(R.id.petName);
         // Extract properties from cursor
         String name = cursor.getString(1);
         // Populate fields with extracted properties
-        pet_button.setText(name);
+        pet_name.setText(name);
 
     }
 }

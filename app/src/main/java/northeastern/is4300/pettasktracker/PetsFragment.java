@@ -61,4 +61,10 @@ public class PetsFragment extends Fragment {
         return v;
     }
 
+    public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+        Intent intent = new Intent(getActivity(), ViewPetActivity_Cookie.class);
+        intent.putExtra("PET_INDEX", position);
+        startActivity(intent);
+    }
+
 }
