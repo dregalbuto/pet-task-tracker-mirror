@@ -13,28 +13,24 @@ import northeastern.is4300.pettasktracker.R;
 /**
  *
  */
-public class PetCursorAdapter extends CursorAdapter {
+public class UserCursorAdapter extends CursorAdapter {
 
-    public PetCursorAdapter(Context context, Cursor cursor) {
-
+    public UserCursorAdapter(Context context, Cursor cursor) {
         super(context, cursor, 0);
     }
 
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup parent) {
-        return LayoutInflater.from(context).inflate(R.layout.item_pet, parent, false);
+        return LayoutInflater.from(context).inflate(R.layout.item_user, parent, false);
     }
 
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
         // Find fields to populate in inflated template
-        TextView pet_name = (TextView) view.findViewById(R.id.petName);
+        TextView user_name = (TextView) view.findViewById(R.id.userName);
         // Extract properties from cursor
         String name = cursor.getString(1);
         // Populate fields with extracted properties
-        pet_name.setText(name);
-
-        // TODO set avatar image based on petType
-
+        user_name.setText(name);
     }
 }

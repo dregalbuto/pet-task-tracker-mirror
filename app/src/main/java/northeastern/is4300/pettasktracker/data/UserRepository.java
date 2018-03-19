@@ -142,4 +142,20 @@ public class UserRepository {
         cursor.close();
         return userList;
     }
+
+    public Cursor getUsersCursor() {
+        String selectQuery =  "SELECT  " +
+                KEY_ID + "," +
+                KEY_USER_NAME + "," +
+                KEY_USER_ISADMIN +
+                " FROM " + TABLE_USERS;
+        Cursor cursor = database.rawQuery(selectQuery, null);
+        return cursor;
+    }
+
+    public void loadSomeUsers() {
+        this.insertAndSetId(new User ("Martha", 1));
+        this.insertAndSetId(new User("Stuart", 1));
+        this.insertAndSetId(new User("Tim", 0));
+    }
 }

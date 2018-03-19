@@ -8,67 +8,28 @@
     tools:context="northeastern.is4300.pettasktracker.UsersFragment">
 
     <TextView
-        android:id="@+id/message_users"
-        android:layout_width="wrap_content"
+        android:id="@+id/userName"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="15dp"
-        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:text="@string/title_activity_users"
-        app:layout_constraintBottom_toTopOf="@+id/pets_linear_layout"
+        android:layout_marginTop="16dp"
+        android:text="Users"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/users_list_view"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
-        android:id="@+id/pets_linear_layout"
+    <ListView
+        android:id="@+id/users_list_view"
         android:layout_width="0dp"
-        android:layout_height="461dp"
-        android:gravity="top"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_height="405dp"
+        android:visibility="visible"
+        app:layout_constraintHeight_max="1dp"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView4"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
-
-        <Button
-            android:id="@+id/user_button_martha"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:color/background_light"
-            android:drawableLeft="@drawable/profile"
-            android:padding="5dp"
-            android:text="@string/user_name_1"
-            android:textAppearance="@style/TextAppearance.AppCompat"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="46dp" />
-
-        <Button
-            android:id="@+id/user_button_stuart"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:color/background_light"
-            android:drawableLeft="@drawable/profile"
-            android:padding="5dp"
-            android:text="@string/user_name_2"
-            android:textAppearance="@style/TextAppearance.AppCompat"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="46dp" />
-
-        <Button
-            android:id="@+id/user_button_tim"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:color/background_light"
-            android:drawableLeft="@drawable/profile"
-            android:padding="5dp"
-            android:text="@string/user_name_3"
-            android:textAppearance="@style/TextAppearance.AppCompat"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="46dp" />
-
-    </LinearLayout>
+        app:layout_constraintVertical_bias="0" />
 
 </android.support.constraint.ConstraintLayout>
