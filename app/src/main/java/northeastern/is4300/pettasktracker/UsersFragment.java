@@ -25,7 +25,10 @@ public class UsersFragment extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_users, container, false);
 
+        // TODO implement Users listView
+
         /* Set up View User button */
+        // TODO button consistency
         Button viewUserButton = (Button) v.findViewById(R.id.user_button_martha);
         viewUserButton.setOnClickListener(new View.OnClickListener() {
             @Override

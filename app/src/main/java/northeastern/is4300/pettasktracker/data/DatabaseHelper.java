@@ -62,7 +62,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_USERS);
         db.execSQL(CREATE_TABLE_TASKS);
 
-        loadPets(db);
+        //loadPets(db);
     }
 
     @Override

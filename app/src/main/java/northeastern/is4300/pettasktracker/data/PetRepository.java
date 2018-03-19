@@ -140,4 +140,9 @@ public class PetRepository {
         return pets;
     }
 
+    public void loadSomePets() {
+        this.insertAndSetId(new Pet ("Fluffy", "Cat"));
+        this.insertAndSetId(new Pet("Rudy", "Dog"));
+    }
+
 }

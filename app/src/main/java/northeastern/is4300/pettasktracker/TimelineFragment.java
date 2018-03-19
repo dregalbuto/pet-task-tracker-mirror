@@ -25,6 +25,8 @@ public class TimelineFragment extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_timeline, container, false);
 
+        // TODO implement Tasks listView
+
         /* Set up Edit Task button */
         Button editTask1 = (Button) v.findViewById(R.id.pencil1);
         editTask1.setOnClickListener(new View.OnClickListener() {
@@ -62,6 +64,7 @@ public class TimelineFragment extends Fragment {
         });
 
         /* Set up Add Task button */
+        // TODO button consistency
         Button addTaskButton = (Button) v.findViewById(R.id.button_add_task_main);
         addTaskButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

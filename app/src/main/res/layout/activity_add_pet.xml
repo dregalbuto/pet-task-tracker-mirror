@@ -31,8 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:text="@string/prompt_pet_name" />
+            android:inputType="textPersonName" />
 
         <TextView
             android:id="@+id/textView5"

@@ -11,5 +11,7 @@ public class ViewUserActivity extends AppCompatActivity {
         setContentView(R.layout.activity_view_user);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        // TODO user listAdapter and listView
     }
 }

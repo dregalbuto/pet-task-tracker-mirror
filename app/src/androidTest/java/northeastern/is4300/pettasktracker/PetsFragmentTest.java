@@ -39,7 +39,7 @@ public class PetsFragmentTest extends ActivityInstrumentationTestCase2<FragmentC
         assertNotNull(petsCursor);
 
         // Setup cursor adapter using cursor from last step
-        final PetCursorAdapter petsAdapter = new PetCursorAdapter(petsFragment.getContext(), R.layout.item_pet, petsCursor);
+        final PetCursorAdapter petsAdapter = new PetCursorAdapter(petsFragment.getContext(), petsCursor);
 
         this.getActivity().runOnUiThread(new Runnable() {
             @Override

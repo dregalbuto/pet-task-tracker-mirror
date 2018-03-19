@@ -35,5 +35,7 @@ public class PetCursorAdapter extends CursorAdapter {
         // Populate fields with extracted properties
         pet_name.setText(name);
 
+        // TODO set avatar image based on petType
+
     }
 }

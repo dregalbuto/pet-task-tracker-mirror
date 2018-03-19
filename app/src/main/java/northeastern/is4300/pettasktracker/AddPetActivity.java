@@ -37,6 +37,7 @@ public class AddPetActivity extends AppCompatActivity {
         spinner.setAdapter(adapter);
 
         /* Set up confirmation button */
+        // TODO button consistency
         final Button confirmationButton = (Button) findViewById(R.id.button_pet_confirm);
         confirmationButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

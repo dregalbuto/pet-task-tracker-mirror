@@ -19,7 +19,7 @@
             android:label="@string/title_activity_view_user"
             android:parentActivityName=".MainActivity" />
         <activity
-            android:name=".ViewPetActivity_Cookie"
+            android:name=".ViewPetActivity"
             android:label="@string/title_activity_view_pet"
             android:parentActivityName=".MainActivity" />
         <activity
@@ -49,7 +49,6 @@
         <activity
             android:name=".FragmentContainerActivity">
         </activity>
-        <activity android:name=".ViewPetActivity_Rudy"></activity>
     </application>
 
 </manifest>

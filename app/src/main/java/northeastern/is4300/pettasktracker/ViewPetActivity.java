@@ -11,14 +11,14 @@ import java.util.HashMap;
 
 import northeastern.is4300.pettasktracker.data.PetRepository;
 
-public class ViewPetActivity_Cookie extends AppCompatActivity {
+public class ViewPetActivity extends AppCompatActivity {
 
     private PetRepository petRepository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_pet_cookie);
+        setContentView(R.layout.activity_view_pet);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -36,13 +36,18 @@ public class ViewPetActivity_Cookie extends AppCompatActivity {
 
             TextView nameText = (TextView) findViewById(R.id.textView);
             nameText.setText(petName);
+
+            // TODO set avatar image based on petType
         }
 
+        // TODO display taskList
+
          /* Set up add task button */
-        Button addTaskButton = (Button) findViewById(R.id.button_pet_add_task_cookie);
+        Button addTaskButton = (Button) findViewById(R.id.button_pet_add_task);
         addTaskButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent myIntent = new Intent(ViewPetActivity_Cookie.this, AddTaskActivity.class);
+                Intent myIntent = new Intent(ViewPetActivity.this, AddTaskActivity.class);
+                // TODO save this pet's name in Intent
                 startActivity(myIntent);
             }
         });

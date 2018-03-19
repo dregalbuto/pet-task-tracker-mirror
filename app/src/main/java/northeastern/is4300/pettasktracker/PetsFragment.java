@@ -30,9 +30,13 @@ public class PetsFragment extends Fragment {
 
         petRepository = new PetRepository(this.getContext());
         petRepository.open();
+
+        if (petRepository.getPetList().size() == 0) {
+            petRepository.loadSomePets();
+        }
+
         Cursor petsCursor = petRepository.getPetsCursor();
 
-        // Find ListView to populate
         final ListView listView = (ListView) v.findViewById(R.id.pets_list_view);
 
         final PetCursorAdapter petsAdapter = new PetCursorAdapter(getActivity(), petsCursor);
@@ -42,13 +46,14 @@ public class PetsFragment extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                Intent intent = new Intent(getActivity(), ViewPetActivity_Cookie.class);
+                Intent intent = new Intent(getActivity(), ViewPetActivity.class);
                 intent.putExtra("PET_INDEX", position);
                 startActivity(intent);
             }
         });
 
         /* Set up Add Pet button */
+        // TODO button consistency
         Button addPetButton = (Button) v.findViewById(R.id.button_add_pet);
         addPetButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,12 +64,6 @@ public class PetsFragment extends Fragment {
         });
 
         return v;
-    }
-
-    public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-        Intent intent = new Intent(getActivity(), ViewPetActivity_Cookie.class);
-        intent.putExtra("PET_INDEX", position);
-        startActivity(intent);
     }
 
 }

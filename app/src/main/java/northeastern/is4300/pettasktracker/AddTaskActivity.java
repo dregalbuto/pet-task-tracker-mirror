@@ -19,10 +19,21 @@ public class AddTaskActivity extends AppCompatActivity {
     private PetRepository petRepository;
     private UserRepository userRepository;
 
+    private void initRepositories() {
+        taskRepository = new TaskRepository(this);
+        taskRepository.open();
+        petRepository = new PetRepository(this);
+        petRepository.open();
+        userRepository = new UserRepository(this);
+        userRepository.open();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_task);
+
+        initRepositories();
 
         /* Set up drop-down menus (spinners) */
         Spinner spinner1 = (Spinner) findViewById(R.id.spinner_task_type);
@@ -31,12 +42,14 @@ public class AddTaskActivity extends AppCompatActivity {
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner1.setAdapter(adapter1);
 
+        // TODO populate from petList
         Spinner spinner2 = (Spinner) findViewById(R.id.spinner_task_user);
         ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this,
                 R.array.array_task_user, android.R.layout.simple_spinner_item);
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner2.setAdapter(adapter2);
 
+        // TODO populate from userList
         Spinner spinner3 = (Spinner) findViewById(R.id.spinner_task_pet);
         ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(this,
                 R.array.array_task_pet, android.R.layout.simple_spinner_item);
