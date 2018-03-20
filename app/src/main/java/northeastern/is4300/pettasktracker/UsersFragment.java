@@ -41,7 +41,7 @@ public class UsersFragment extends Fragment {
 
         Cursor usersCursor = userRepository.getUsersCursor();
 
-        final ListView listView = (ListView) v.findViewById(R.id.users_list_view);
+        final ListView listView = (ListView) v.findViewById(R.id.home_tasks_listview);
 
         final UserCursorAdapter usersAdapter = new UserCursorAdapter(getActivity(), usersCursor);
         listView.setAdapter(usersAdapter);

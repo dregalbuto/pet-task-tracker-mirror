@@ -8,7 +8,7 @@
     tools:context="northeastern.is4300.pettasktracker.PetsFragment">
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/taskTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="15dp"
@@ -42,7 +42,7 @@
         app:layout_constraintBottom_toTopOf="@id/button_add_pet"
         app:layout_constraintHeight_max="1dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView4"
+        app:layout_constraintTop_toBottomOf="@id/taskTitle"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0" />
 

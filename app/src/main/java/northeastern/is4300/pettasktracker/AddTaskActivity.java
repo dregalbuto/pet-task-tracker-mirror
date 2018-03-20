@@ -84,7 +84,7 @@ public class AddTaskActivity extends AppCompatActivity {
                 Spinner spinner5 = (Spinner) findViewById(R.id.spinner_task_repeat);
                 String repeat = spinner5.getSelectedItem().toString();
 
-                Task task = new Task(taskType, time, repeat);
+                Task task = new Task(Task.getTypeEnum(taskType), time, repeat);
 
                 long petId = petRepository.getPetByName(pet).getId();
                 task.setPetId(petId);

@@ -40,7 +40,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final void loadPets(SQLiteDatabase db) {
         ContentValues values = new ContentValues();
-        values.put(PetRepository.KEY_PET_NAME, "Fluffy");
+        values.put(PetRepository.KEY_PET_NAME, "Cookie");
         values.put(PetRepository.KEY_PET_TYPE, "Cat");
         db.insert(PetRepository.TABLE_PETS, null, values);
 
@@ -49,8 +49,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(PetRepository.KEY_PET_TYPE, "Dog");
         db.insert(PetRepository.TABLE_PETS, null, values);
     }
-    private static final String LOAD_USERS = "";
-    private static final String LOAD_TASKS = "";
+
+    private static final void loadUsers(SQLiteDatabase db) {
+        ContentValues values = new ContentValues();
+        values.put(UserRepository.KEY_USER_NAME, "Martha");
+        values.put(UserRepository.KEY_USER_ISADMIN, 1);
+        db.insert(UserRepository.TABLE_USERS, null, values);
+
+        values = new ContentValues();
+        values.put(UserRepository.KEY_USER_NAME, "Stuart");
+        values.put(UserRepository.KEY_USER_ISADMIN, 1);
+        db.insert(UserRepository.TABLE_USERS, null, values);
+
+        values = new ContentValues();
+        values.put(UserRepository.KEY_USER_NAME, "Tim");
+        values.put(UserRepository.KEY_USER_ISADMIN, 0);
+        db.insert(UserRepository.TABLE_USERS, null, values);
+    }
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -62,7 +77,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_USERS);
         db.execSQL(CREATE_TABLE_TASKS);
 
-        //loadPets(db);
+        loadPets(db);
+        loadUsers(db);
     }
 
     @Override

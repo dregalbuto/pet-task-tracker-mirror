@@ -1,14 +1,23 @@
 package northeastern.is4300.pettasktracker;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ListView;
+
+import northeastern.is4300.pettasktracker.adapters.TaskCursorAdapter;
+import northeastern.is4300.pettasktracker.data.TaskLoader;
+import northeastern.is4300.pettasktracker.data.TaskRepository;
 
 public class TimelineFragment extends Fragment {
+
+    private TaskRepository taskRepository;
+    private TaskLoader taskLoader;
 
     public static TimelineFragment newInstance() {
         TimelineFragment fragment = new TimelineFragment();
@@ -18,6 +27,7 @@ public class TimelineFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 
     @Override
@@ -25,47 +35,23 @@ public class TimelineFragment extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_timeline, container, false);
 
-        // TODO implement Tasks listView
+        taskRepository = new TaskRepository(this.getContext());
+        taskRepository.open();
 
-        /* Set up Edit Task button */
-        Button editTask1 = (Button) v.findViewById(R.id.pencil1);
-        editTask1.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent myIntent = new Intent(getActivity(), EditTaskActivity.class);
-                startActivity(myIntent);
-            }
-        });
+        if (taskRepository.getTaskList().size() == 0) {
+            taskLoader = new TaskLoader(this.getContext());
+            taskLoader.addSomeTasks();
+        }
 
-        /* Set up Edit Task button */
-        Button editTask2 = (Button) v.findViewById(R.id.pencil2);
-        editTask2.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent myIntent = new Intent(getActivity(), EditTaskActivity.class);
-                startActivity(myIntent);
-            }
-        });
+        Cursor taskCursor = taskRepository.getTasksCursor();
 
-        /* Set up Edit Task button */
-        Button editTask3 = (Button) v.findViewById(R.id.pencil3);
-        editTask3.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent myIntent = new Intent(getActivity(), EditTaskActivity.class);
-                startActivity(myIntent);
-            }
-        });
+        final ListView listView = (ListView) v.findViewById(R.id.home_tasks_listview);
 
-        /* Set up Edit Task button */
-        Button editTask4 = (Button) v.findViewById(R.id.pencil4);
-        editTask4.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent myIntent = new Intent(getActivity(), EditTaskActivity.class);
-                startActivity(myIntent);
-            }
-        });
+        final TaskCursorAdapter tasksAdapter = new TaskCursorAdapter(getActivity(), taskCursor);
+        listView.setAdapter(tasksAdapter);
+        tasksAdapter.changeCursor(taskCursor);
 
-        /* Set up Add Task button */
-        // TODO button consistency
-        Button addTaskButton = (Button) v.findViewById(R.id.button_add_task_main);
+        Button addTaskButton = (Button) v.findViewById(R.id.button_home_add_task);
         addTaskButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent myIntent = new Intent(getActivity(), AddTaskActivity.class);

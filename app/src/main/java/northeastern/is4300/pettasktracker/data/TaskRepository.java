@@ -36,6 +36,13 @@ public class TaskRepository {
         dbHelper.close();
     }
 
+    public Cursor getTasksCursor() {
+        String selectQuery =  "SELECT *" +
+                " FROM " + TABLE_TASKS;
+        Cursor cursor = database.rawQuery(selectQuery, null);
+        return cursor;
+    }
+
     public long insertAndSetId(Task task) {
         ContentValues values = new ContentValues();
         values.put(KEY_TASK_TYPE, task.getType());
@@ -89,7 +96,7 @@ public class TaskRepository {
         return taskList;
     }
 
-    private Task cursorToTask(Cursor cursor) {
+    public static Task cursorToTask(Cursor cursor) {
         Task task = new Task();
         task.setId(cursor.getLong(0));
         task.setType(cursor.getString(1));
@@ -122,5 +129,22 @@ public class TaskRepository {
 
         cursor.close();
         return taskList;
+    }
+
+    public static String makeTaskTitle(String petName, String taskType) {
+        String taskTitle = new String();
+
+        switch(taskType) {
+            case "Walk":
+                taskTitle = taskTitle.concat("Walk " + petName);
+                break;
+            case "Food":
+                taskTitle = taskTitle.concat("Feed " + petName);
+                break;
+            case "Medication":
+                taskTitle = taskTitle.concat("Give " + petName + " medicine");
+                break;
+        }
+        return taskTitle;
     }
 }

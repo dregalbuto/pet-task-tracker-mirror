@@ -94,7 +94,7 @@ public class ComboDatabaseTest {
         User user = new User("Diana", 1);
         userRepository.insertAndSetId(user);
 
-        Task task = new Task("Walk", "12:00", "Daily");
+        Task task = new Task(Task.TASK_TYPE.Walk, "12:00", "Daily");
         task.setUserId(user.getId());
         task.setPetId(pet.getId());
         taskRepository.insertAndSetId(task);

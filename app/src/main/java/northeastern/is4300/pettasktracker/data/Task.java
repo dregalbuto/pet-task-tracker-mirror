@@ -12,6 +12,24 @@ public class Task {
     private long petId;
     private long userId;
 
+    public enum TASK_TYPE  {
+        Food,
+        Walk,
+        Medication
+    }
+
+    static public TASK_TYPE getTypeEnum(String taskType) {
+        if (taskType.equals("Food")) {
+            return TASK_TYPE.Food;
+        }
+        else if (taskType.equals("Walk")) {
+            return TASK_TYPE.Walk;
+        }
+        else {
+            return TASK_TYPE.Medication;
+        }
+    }
+
     public Task() {
         this.id = 0;
         this.type = new String();
@@ -21,10 +39,18 @@ public class Task {
         this.userId = -1;
     }
 
-    public Task(String type, String taskTime, String repeat){
+    public Task(TASK_TYPE type, String taskTime, String repeat){
         this.taskTime = taskTime;
-        this.type = type;
+        this.type = type.name();
         this.repeat = repeat;
+    }
+
+    public Task(TASK_TYPE type, String taskTime, String repeat, long petId, long userId){
+        this.taskTime = taskTime;
+        this.type = type.name();
+        this.repeat = repeat;
+        this.petId = petId;
+        this.userId = userId;
     }
 
     public void setPetId(long petId) {

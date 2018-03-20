@@ -17,6 +17,7 @@ import static junit.framework.Assert.assertNotNull;
 import static junit.framework.Assert.assertTrue;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertEquals;
 
 /**
  *
@@ -45,7 +46,7 @@ public class TaskDatabaseTest {
 
     @Test
     public void testShouldAddTask() throws Exception {
-        taskRepository.insertAndSetId(new Task("Walk", "12:00", "Daily"));
+        taskRepository.insertAndSetId(new Task(Task.TASK_TYPE.Walk, "12:00", "Daily"));
         List<Task> tasks = taskRepository.getTaskListAsTasks();
 
         assertThat(tasks.size(), is(1));
@@ -63,7 +64,7 @@ public class TaskDatabaseTest {
 
     @Test
     public void testDeleteOnlyOne() {
-        taskRepository.insertAndSetId(new Task("Walk", "12:00", "Daily"));
+        taskRepository.insertAndSetId(new Task(Task.TASK_TYPE.Walk, "12:00", "Daily"));
         List<Task> tasks = taskRepository.getTaskListAsTasks();
 
         assertThat(tasks.size(), is(1));
@@ -77,9 +78,9 @@ public class TaskDatabaseTest {
     @Test
     public void testAddAndDelete() {
         taskRepository.deleteAll();
-        taskRepository.insertAndSetId(new Task("Walk", "12:00", "Daily"));
-        taskRepository.insertAndSetId(new Task("Food", "15:00", "Weekly"));
-        taskRepository.insertAndSetId(new Task("Medication", "03:00", "Daily"));
+        taskRepository.insertAndSetId(new Task(Task.TASK_TYPE.Walk, "12:00", "Daily"));
+        taskRepository.insertAndSetId(new Task(Task.TASK_TYPE.Food, "15:00", "Weekly"));
+        taskRepository.insertAndSetId(new Task(Task.TASK_TYPE.Medication, "03:00", "Daily"));
 
         List<Task> tasks = taskRepository.getTaskListAsTasks();
         assertThat(tasks.size(), is(3));
@@ -89,6 +90,20 @@ public class TaskDatabaseTest {
 
         tasks = taskRepository.getTaskListAsTasks();
         assertThat(tasks.size(), is(1));
+    }
+
+    @Test
+    public void testMakeTaskTitle() {
+        assertEquals(TaskRepository.makeTaskTitle("Fluffy", "Food"), "Feed Fluffy");
+        assertEquals(TaskRepository.makeTaskTitle("Fluffy", "Walk"), "Walk Fluffy");
+        assertEquals(TaskRepository.makeTaskTitle("Fluffy", "Medication"), "Give Fluffy medicine");
+    }
+
+    @Test
+    public void testGetTypeEnum() {
+        assertEquals(Task.getTypeEnum("Food"), Task.TASK_TYPE.Food);
+        assertEquals(Task.getTypeEnum("Walk"), Task.TASK_TYPE.Walk);
+        assertEquals(Task.getTypeEnum("Medication"), Task.TASK_TYPE.Medication);
     }
 
 }
