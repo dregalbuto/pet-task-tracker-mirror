@@ -22,8 +22,11 @@
             android:layout_gravity="center"
             android:layout_weight="1"
             android:gravity="center_horizontal|center"
+            android:paddingStart="12dp"
+            android:paddingTop="12dp"
             android:text="@string/prompt_pet_name"
-            android:textAlignment="center" />
+            android:textAlignment="textStart"
+            android:textSize="24sp" />
 
         <EditText
             android:id="@+id/edit_pet_name"
@@ -39,7 +42,12 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center_vertical|center"
-            android:text="@string/prompt_pet_type" />
+            android:paddingStart="12dp"
+            android:paddingTop="12dp"
+            android:text="@string/prompt_pet_type"
+            android:textAlignment="textStart"
+            android:textAllCaps="false"
+            android:textSize="24sp" />
 
         <Spinner
             android:id="@+id/spinner_pet_type"
@@ -53,7 +61,11 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center_vertical|center"
-            android:text="@string/prompt_pet_pic" />
+            android:paddingStart="12dp"
+            android:paddingTop="12dp"
+            android:text="@string/prompt_pet_pic"
+            android:textAlignment="textStart"
+            android:textSize="24sp" />
 
         <ImageView
             android:id="@+id/petAvatar"
@@ -66,6 +78,7 @@
 
         <Button
             android:id="@+id/button_pet_confirm"
+            style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"

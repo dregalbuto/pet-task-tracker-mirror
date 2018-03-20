@@ -34,7 +34,7 @@
         <item>Dog</item>
     </string-array>
     <string name="prompt_pet_pic">Image</string>
-    <string name="prompt_pet_confirm">Add Pet</string>
+    <string name="prompt_pet_confirm">Save Pet</string>
 
     <!-- add task -->
     <string name="prompt_task_type">Type</string>
@@ -69,7 +69,7 @@
         <item>Weekly</item>
     </string-array>
     <string name="prompt_task_notes">Notes</string>
-    <string name="button_task_confirm">Add Task</string>
+    <string name="button_task_confirm">Save Task</string>
     <string name="button_task_edit_confirm">Save Task</string>
 
     <string name="title_activity_login">Sign in</string>

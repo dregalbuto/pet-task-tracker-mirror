@@ -27,24 +27,20 @@
         android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/button_home_add_task"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_max="1dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/Home" />
 
     <Button
         android:id="@+id/button_home_add_task"
-        style="@android:style/Widget.Material.Button.Colored"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:layout_marginTop="32dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginBottom="30dp"
+        android:background="@android:drawable/ic_menu_add"
         android:gravity="top|bottom|center_vertical|center_horizontal"
-        android:text="@string/title_activity_add_pet"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pets_list_view"
+        app:layout_constraintTop_toBottomOf="@+id/home_tasks_listview"
         app:layout_constraintVertical_bias="1.0" />
 
 </android.support.constraint.ConstraintLayout>
