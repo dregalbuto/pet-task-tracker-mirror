@@ -10,7 +10,7 @@
     <ListView
         android:id="@+id/home_tasks_listview"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="405dp"
         android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/button_home_add_task"
         app:layout_constraintEnd_toEndOf="parent"
