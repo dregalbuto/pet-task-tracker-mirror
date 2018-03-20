@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CursorAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import northeastern.is4300.pettasktracker.R;
@@ -34,7 +35,11 @@ public class PetCursorAdapter extends CursorAdapter {
         // Populate fields with extracted properties
         pet_name.setText(name);
 
-        // TODO set avatar image based on petType
+        ImageView pet_icon = (ImageView) view.findViewById(R.id.petIcon);
+        String petType = cursor.getString(2);
+        if (petType.equals("Dog")) {
+            pet_icon.setImageDrawable(view.getResources().getDrawable(R.drawable.dog_icon_100));
+        }
 
     }
 }

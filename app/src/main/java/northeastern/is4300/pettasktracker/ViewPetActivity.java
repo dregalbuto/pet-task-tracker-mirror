@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.HashMap;
@@ -37,7 +38,10 @@ public class ViewPetActivity extends AppCompatActivity {
             TextView nameText = (TextView) findViewById(R.id.textView);
             nameText.setText(petName);
 
-            // TODO set avatar image based on petType
+            ImageView pet_icon = (ImageView) findViewById(R.id.petProfileIcon);
+            if (petType.equals("Dog")) {
+                pet_icon.setImageDrawable(getResources().getDrawable(R.drawable.dog_icon_100));
+            }
         }
 
         // TODO display taskList

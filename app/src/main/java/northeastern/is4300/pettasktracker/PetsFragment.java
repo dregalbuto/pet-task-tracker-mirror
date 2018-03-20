@@ -52,8 +52,6 @@ public class PetsFragment extends Fragment {
             }
         });
 
-        /* Set up Add Pet button */
-        // TODO button consistency
         Button addPetButton = (Button) v.findViewById(R.id.button_add_pet);
         addPetButton.setOnClickListener(new View.OnClickListener() {
             @Override

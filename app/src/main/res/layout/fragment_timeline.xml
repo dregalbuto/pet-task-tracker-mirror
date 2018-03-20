@@ -7,19 +7,6 @@
     android:layout_height="match_parent"
     tools:context="northeastern.is4300.pettasktracker.UsersFragment">
 
-    <TextView
-        android:id="@+id/Home"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Home"
-        android:textAlignment="center"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/home_tasks_listview"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <ListView
         android:id="@+id/home_tasks_listview"
         android:layout_width="0dp"
@@ -28,7 +15,7 @@
         app:layout_constraintBottom_toTopOf="@+id/button_home_add_task"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/Home" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/button_home_add_task"
@@ -36,6 +23,7 @@
         android:layout_height="70dp"
         android:layout_marginBottom="30dp"
         android:background="@android:drawable/ic_menu_add"
+        android:backgroundTint="@color/colorAccent"
         android:gravity="top|bottom|center_vertical|center_horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
