@@ -51,7 +51,7 @@ public class UsersFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 Intent intent = new Intent(getActivity(), ViewUserActivity.class);
-                intent.putExtra("USER_INDEX", position);
+                intent.putExtra("PET_INDEX", position);
                 startActivity(intent);
             }
         });

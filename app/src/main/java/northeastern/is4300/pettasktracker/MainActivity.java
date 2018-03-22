@@ -7,19 +7,37 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
-import android.widget.TextView;
-
-import northeastern.is4300.pettasktracker.PetsFragment;
-import northeastern.is4300.pettasktracker.R;
-import northeastern.is4300.pettasktracker.TimelineFragment;
-import northeastern.is4300.pettasktracker.UsersFragment;
 
 public class MainActivity extends AppCompatActivity {
+
+    static String last_fragment;
+
+    static final String KEY_FRAG = "Key";
+    static final String VAL_FRAG_PETS = "FRAG_PETS";
+    static final String VAL_FRAG_USERS = "FRAG_USERS";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if(last_fragment != null) {
+            switch (last_fragment) {
+                case VAL_FRAG_PETS:
+                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                    transaction.replace(R.id.frame_layout, PetsFragment.newInstance());
+                    transaction.commit();
+                    break;
+                case VAL_FRAG_USERS:
+                    FragmentTransaction transaction2 = getSupportFragmentManager().beginTransaction();
+                    transaction2.replace(R.id.frame_layout, UsersFragment.newInstance());
+                    transaction2.commit();
+            }
+        } else {
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.frame_layout, TimelineFragment.newInstance());
+            transaction.commit();
+        }
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener
@@ -33,27 +51,19 @@ public class MainActivity extends AppCompatActivity {
                                 break;
                             case R.id.navigation_pets:
                                 selectedFragment = PetsFragment.newInstance();
+                                last_fragment = VAL_FRAG_PETS;
                                 break;
                             case R.id.navigation_users:
                                 selectedFragment = UsersFragment.newInstance();
+                                last_fragment = VAL_FRAG_USERS;
                                 break;
                         }
                         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                         transaction.replace(R.id.frame_layout, selectedFragment);
-                        transaction.addToBackStack("MainActivity");
                         transaction.commit();
                         return true;
                     }
                 });
-
-        if(getFragmentManager().getBackStackEntryCount() > 0){
-            getFragmentManager().popBackStackImmediate();
-        }
-        else {
-            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.frame_layout, TimelineFragment.newInstance());
-            transaction.commit();
-        }
     }
 
 }
