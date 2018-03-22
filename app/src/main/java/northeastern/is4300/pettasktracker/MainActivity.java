@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
     static final String KEY_FRAG = "Key";
     static final String VAL_FRAG_PETS = "FRAG_PETS";
     static final String VAL_FRAG_USERS = "FRAG_USERS";
+    static final String VAL_FRAG_TIMELINE = "FRAG_TIMELINE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +33,10 @@ public class MainActivity extends AppCompatActivity {
                     FragmentTransaction transaction2 = getSupportFragmentManager().beginTransaction();
                     transaction2.replace(R.id.frame_layout, UsersFragment.newInstance());
                     transaction2.commit();
+                case VAL_FRAG_TIMELINE:
+                    FragmentTransaction transaction3 = getSupportFragmentManager().beginTransaction();
+                    transaction3.replace(R.id.frame_layout, TimelineFragment.newInstance());
+                    transaction3.commit();
             }
         } else {
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
@@ -48,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
                         switch (item.getItemId()) {
                             case R.id.navigation_home:
                                 selectedFragment = TimelineFragment.newInstance();
+                                last_fragment = VAL_FRAG_TIMELINE;
                                 break;
                             case R.id.navigation_pets:
                                 selectedFragment = PetsFragment.newInstance();
