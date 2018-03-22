@@ -42,17 +42,15 @@ public class AddTaskActivity extends AppCompatActivity {
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner1.setAdapter(adapter1);
 
-        // TODO populate from petList
         Spinner spinner2 = (Spinner) findViewById(R.id.spinner_task_user);
-        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this,
-                R.array.array_task_user, android.R.layout.simple_spinner_item);
+        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_dropdown_item, userRepository.getUserNamesList());
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner2.setAdapter(adapter2);
 
-        // TODO populate from userList
         Spinner spinner3 = (Spinner) findViewById(R.id.spinner_task_pet);
-        ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(this,
-                R.array.array_task_pet, android.R.layout.simple_spinner_item);
+        ArrayAdapter<String> adapter3 = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, petRepository.getPetNamesList());
         adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner3.setAdapter(adapter3);
 

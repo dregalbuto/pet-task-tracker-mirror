@@ -143,6 +143,24 @@ public class UserRepository {
         return userList;
     }
 
+    public ArrayList<String> getUserNamesList() {
+        String selectQuery =  "SELECT  " +
+                KEY_USER_NAME +
+                " FROM " + TABLE_USERS;
+
+        ArrayList<String> userList = new ArrayList<>();
+        Cursor cursor = database.rawQuery(selectQuery, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                userList.add(cursor.getString(0));
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        return userList;
+    }
+
     public Cursor getUsersCursor() {
         String selectQuery =  "SELECT  " +
                 KEY_ID + "," +
