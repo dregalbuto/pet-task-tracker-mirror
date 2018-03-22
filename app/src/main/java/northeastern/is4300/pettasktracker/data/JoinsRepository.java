@@ -1,5 +1,6 @@
 package northeastern.is4300.pettasktracker.data;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
@@ -82,5 +83,14 @@ public class JoinsRepository {
         }
 
         return u;
+    }
+
+    public void updateTaskUser(Task task, User newUser) {
+        ContentValues values = new ContentValues();
+        values.put(TaskRepository.KEY_USER_ID, newUser.getId());
+        database.update(TaskRepository.TABLE_TASKS,
+                values,
+                TaskRepository.KEY_ID + "= " + task.getId(),
+                null);
     }
 }
