@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
     static final String VAL_FRAG_PETS = "FRAG_PETS";
     static final String VAL_FRAG_USERS = "FRAG_USERS";
     static final String VAL_FRAG_TIMELINE = "FRAG_TIMELINE";
+    static final String KEY_TASK_ID = "KEY_TASK_ID";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

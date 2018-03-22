@@ -35,6 +35,8 @@ public class AddTaskActivity extends AppCompatActivity {
 
         initRepositories();
 
+        final long taskId = savedInstanceState.getLong(MainActivity.KEY_TASK_ID);
+
         /* Set up drop-down menus (spinners) */
         Spinner spinner1 = (Spinner) findViewById(R.id.spinner_task_type);
         ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(this,
@@ -90,7 +92,12 @@ public class AddTaskActivity extends AppCompatActivity {
                 long userId = userRepository.getUserByName(user).getId();
                 task.setUserId(userId);
 
-                taskRepository.insertAndSetId(task);
+                if (taskId > 0) {
+                    taskRepository.updateTask(taskId, task);
+                }
+                else {
+                    taskRepository.insertAndSetId(task);
+                }
 
                 confirmationButton.setText("Success!");
 
