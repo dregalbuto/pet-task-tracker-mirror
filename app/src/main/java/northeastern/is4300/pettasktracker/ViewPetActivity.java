@@ -54,7 +54,6 @@ public class ViewPetActivity extends AppCompatActivity {
         addTaskButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent myIntent = new Intent(ViewPetActivity.this, AddEditTaskActivity.class);
-                // TODO save this pet's name in Intent
                 myIntent.putExtra(GlobalVariables.KEY_PET_NAME, petName);
                 startActivity(myIntent);
             }
