@@ -15,6 +15,7 @@ import northeastern.is4300.pettasktracker.data.PetRepository;
 public class ViewPetActivity extends AppCompatActivity {
 
     private PetRepository petRepository;
+    String petName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +34,9 @@ public class ViewPetActivity extends AppCompatActivity {
             HashMap<String, String> targetPet = petRepository.getPetList().get(petIndex);
 
             String petName = targetPet.get("name");
+            this.petName = petName;
             String petType = targetPet.get("type");
+
 
             TextView nameText = (TextView) findViewById(R.id.textView);
             nameText.setText(petName);
@@ -52,6 +55,7 @@ public class ViewPetActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent myIntent = new Intent(ViewPetActivity.this, AddEditTaskActivity.class);
                 // TODO save this pet's name in Intent
+                myIntent.putExtra(GlobalVariables.KEY_PET_NAME, petName);
                 startActivity(myIntent);
             }
         });

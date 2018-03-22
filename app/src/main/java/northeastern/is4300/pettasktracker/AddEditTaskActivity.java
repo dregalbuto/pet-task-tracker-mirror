@@ -19,6 +19,7 @@ public class AddEditTaskActivity extends AppCompatActivity {
     private PetRepository petRepository;
     private UserRepository userRepository;
     private long taskId;
+    private String petName;
 
     private void initRepositories() {
         taskRepository = new TaskRepository(this);
@@ -38,9 +39,14 @@ public class AddEditTaskActivity extends AppCompatActivity {
 
         Bundle b = getIntent().getExtras();
         if (b != null) {
-            taskId = b.getLong(GlobalVariables.KEY_TASK_ID);
-        } else {
-            taskId = -1;
+            if (b.containsKey(GlobalVariables.KEY_TASK_ID)) {
+                taskId = b.getLong(GlobalVariables.KEY_TASK_ID);
+            } else {
+                taskId = -1;
+            }
+            if (b.containsKey(GlobalVariables.KEY_PET_NAME)) {
+                petName = b.getString(GlobalVariables.KEY_PET_NAME);
+            }
         }
 
         Task sourceTask = taskRepository.getTaskById(taskId);
@@ -71,6 +77,9 @@ public class AddEditTaskActivity extends AppCompatActivity {
         spinner3.setAdapter(adapter3);
         if (sourceTask != null) {
             spinner3.setSelection(adapter3.getPosition(petRepository.getPetById(sourceTask.getPetId()).getName()));
+        }
+        if (petName != null) {
+            spinner3.setSelection(adapter3.getPosition(petName));
         }
 
         Spinner spinner4 = (Spinner) findViewById(R.id.spinner_task_time);
