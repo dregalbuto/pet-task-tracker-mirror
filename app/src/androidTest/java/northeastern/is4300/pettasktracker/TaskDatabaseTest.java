@@ -106,4 +106,18 @@ public class TaskDatabaseTest {
         assertEquals(Task.getTypeEnum("Medication"), Task.TASK_TYPE.Medication);
     }
 
+    @Test
+    public void testUpdateTask() {
+        Task t = new Task(Task.TASK_TYPE.Walk, "12:00", "Daily");
+        taskRepository.insertAndSetId(t);
+
+        Task t2 = new Task(Task.TASK_TYPE.Walk, "6:00", "Weekly");
+        taskRepository.updateTask(t.getId(), t2);
+
+        Task t3 = taskRepository.getTaskById(t.getId());
+        assertEquals(t3.getType(), Task.TASK_TYPE.Walk.name());
+        assertEquals(t3.getTaskTime(), "6:00");
+        assertEquals(t3.getRepeat(), "Weekly");
+    }
+
 }
