@@ -12,7 +12,6 @@ public class MainActivity extends AppCompatActivity {
 
     static String last_fragment;
 
-    static final String KEY_FRAG = "Key";
     static final String VAL_FRAG_PETS = "FRAG_PETS";
     static final String VAL_FRAG_USERS = "FRAG_USERS";
     static final String VAL_FRAG_TIMELINE = "FRAG_TIMELINE";

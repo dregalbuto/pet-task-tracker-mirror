@@ -57,7 +57,6 @@ public class PetsFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), AddPetActivity.class);
-                intent.putExtra(MainActivity.KEY_FRAG, MainActivity.VAL_FRAG_PETS);
                 startActivity(intent);
             }
         });
