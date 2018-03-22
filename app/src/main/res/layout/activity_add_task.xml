@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:scrollIndicators="right"
-    tools:context="northeastern.is4300.pettasktracker.AddTaskActivity"
+    tools:context="northeastern.is4300.pettasktracker.AddEditTaskActivity"
     tools:layout_editor_absoluteY="81dp">
 
     <LinearLayout

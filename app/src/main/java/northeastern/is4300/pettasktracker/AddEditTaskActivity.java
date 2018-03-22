@@ -13,7 +13,7 @@ import northeastern.is4300.pettasktracker.data.Task;
 import northeastern.is4300.pettasktracker.data.TaskRepository;
 import northeastern.is4300.pettasktracker.data.UserRepository;
 
-public class AddTaskActivity extends AppCompatActivity {
+public class AddEditTaskActivity extends AppCompatActivity {
 
     private TaskRepository taskRepository;
     private PetRepository petRepository;
@@ -124,7 +124,7 @@ public class AddTaskActivity extends AppCompatActivity {
 
                 confirmationButton.setText("Success!");
 
-                Intent myIntent = new Intent(AddTaskActivity.this, MainActivity.class);
+                Intent myIntent = new Intent(AddEditTaskActivity.this, MainActivity.class);
                 startActivity(myIntent);
             }
         });

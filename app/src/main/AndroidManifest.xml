@@ -27,16 +27,12 @@
             android:label="@string/title_activity_add_pet"
             android:parentActivityName=".MainActivity" />
         <activity
-            android:name=".AddTaskActivity"
+            android:name=".AddEditTaskActivity"
             android:label="@string/title_activity_add_task"
             android:parentActivityName=".MainActivity" />
         <activity
-            android:name=".EditTaskActivity"
-            android:label="@string/title_activity_edit_task"
-            android:parentActivityName=".MainActivity" />
-        <activity
             android:name=".MainActivity"
-            android:label="@string/title_activity_main"></activity>
+            android:label="@string/title_activity_main"/>
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login">

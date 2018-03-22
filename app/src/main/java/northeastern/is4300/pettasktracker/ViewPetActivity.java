@@ -50,7 +50,7 @@ public class ViewPetActivity extends AppCompatActivity {
         Button addTaskButton = (Button) findViewById(R.id.button_pet_add_task);
         addTaskButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent myIntent = new Intent(ViewPetActivity.this, AddTaskActivity.class);
+                Intent myIntent = new Intent(ViewPetActivity.this, AddEditTaskActivity.class);
                 // TODO save this pet's name in Intent
                 startActivity(myIntent);
             }
