@@ -54,7 +54,8 @@ public class TimelineFragment extends Fragment {
         Button addTaskButton = (Button) v.findViewById(R.id.button_home_add_task);
         addTaskButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent myIntent = new Intent(getActivity(), AddTaskActivity.class);
+                Intent myIntent = new Intent(getActivity(), AddEditTaskActivity.class);
+                myIntent.putExtra(GlobalVariables.KEY_TASK_ID, -1);
                 startActivity(myIntent);
             }
         });

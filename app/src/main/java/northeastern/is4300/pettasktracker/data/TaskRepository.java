@@ -36,6 +36,26 @@ public class TaskRepository {
         dbHelper.close();
     }
 
+    public Task getTaskById(long id) {
+        String selectQuery =  "SELECT  " +
+                KEY_ID + "," +
+                KEY_TASK_TYPE + "," +
+                KEY_TASK_TIME + "," +
+                KEY_TASK_REPEAT + "," +
+                KEY_PET_ID + "," +
+                KEY_USER_ID +
+                " FROM " + TABLE_TASKS +
+                " WHERE " + KEY_ID + "= " + id + ";";
+        Cursor cursor = database.rawQuery(selectQuery, null);
+
+        Task t = null;
+        if (cursor.moveToFirst()) {
+            t = cursorToTask(cursor);
+        }
+
+        return t;
+    }
+
     public Cursor getTasksCursor() {
         String selectQuery =  "SELECT *" +
                 " FROM " + TABLE_TASKS;
@@ -146,5 +166,15 @@ public class TaskRepository {
                 break;
         }
         return taskTitle;
+    }
+
+    public void updateTask(long taskId, Task newTask) {
+        ContentValues values = new ContentValues();
+        values.put(KEY_TASK_TYPE, newTask.getType());
+        values.put(KEY_TASK_TIME, newTask.getTaskTime());
+        values.put(KEY_TASK_REPEAT, newTask.getRepeat());
+        values.put(KEY_PET_ID, newTask.getPetId());
+        values.put(KEY_USER_ID, newTask.getUserId());
+        database.update(TABLE_TASKS, values, "_id = " + taskId, null);
     }
 }

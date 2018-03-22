@@ -10,6 +10,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import northeastern.is4300.pettasktracker.data.Pet;
 import northeastern.is4300.pettasktracker.data.PetRepository;
@@ -113,6 +114,17 @@ public class PetDatabaseTest {
         pet = PetRepository.cursorToPetList(c).get(0);
         assertNotNull(pet);
         assertEquals(pet.getName(), "Fluffy");
+    }
+
+    @Test
+    public void testGetNames() {
+        petRepository.insertAndSetId(new Pet("Fluffy", "Cat"));
+        petRepository.insertAndSetId(new Pet("Bruno", "Dog"));
+        petRepository.insertAndSetId(new Pet("Pusheen", "Cat"));
+
+        List<String> pets = petRepository.getPetNamesList();
+        assertEquals(pets.size(), 3);
+        assertEquals(pets.get(1), "Bruno");
     }
 
 }

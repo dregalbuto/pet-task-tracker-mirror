@@ -102,4 +102,15 @@ public class UserDatabaseTest {
         assertEquals(user.getIsAdmin(), 1);
     }
 
+    @Test
+    public void testGetNames() {
+        userRepository.insertAndSetId(new User("Fluffy", 1));
+        userRepository.insertAndSetId(new User("Bruno", 0));
+        userRepository.insertAndSetId(new User("Pusheen", 0));
+
+        List<String> users = userRepository.getUserNamesList();
+        assertEquals(users.size(), 3);
+        assertEquals(users.get(1), "Bruno");
+    }
+
 }

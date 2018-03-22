@@ -114,6 +114,24 @@ public class PetRepository {
         return petList;
     }
 
+    public ArrayList<String> getPetNamesList() {
+        String selectQuery =  "SELECT  " +
+                KEY_PET_NAME +
+                " FROM " + TABLE_PETS;
+
+        ArrayList<String> petList = new ArrayList<>();
+        Cursor cursor = database.rawQuery(selectQuery, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                petList.add(cursor.getString(0));
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        return petList;
+    }
+
     public Cursor getPetsCursor() {
         String selectQuery =  "SELECT  " +
                 KEY_ID + "," +
