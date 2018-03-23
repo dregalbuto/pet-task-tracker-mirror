@@ -4,12 +4,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CursorAdapter;
 import android.widget.ImageButton;
+import android.widget.PopupMenu;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 import northeastern.is4300.pettasktracker.AddEditTaskActivity;
 import northeastern.is4300.pettasktracker.GlobalVariables;
@@ -19,6 +23,7 @@ import northeastern.is4300.pettasktracker.data.Pet;
 import northeastern.is4300.pettasktracker.data.Task;
 import northeastern.is4300.pettasktracker.data.TaskRepository;
 import northeastern.is4300.pettasktracker.data.User;
+import northeastern.is4300.pettasktracker.data.UserRepository;
 
 /**
  *
@@ -27,6 +32,7 @@ import northeastern.is4300.pettasktracker.data.User;
 public class TaskCursorAdapter extends CursorAdapter {
 
     private JoinsRepository joinsRepository;
+    private UserRepository userRepository;
     private Context myContext;
     private long taskId;
 
@@ -35,6 +41,8 @@ public class TaskCursorAdapter extends CursorAdapter {
         this.myContext = context;
         joinsRepository = new JoinsRepository(context);
         joinsRepository.open();
+        userRepository = new UserRepository(context);
+        userRepository.open();
     }
 
     @Override
@@ -43,11 +51,13 @@ public class TaskCursorAdapter extends CursorAdapter {
     }
 
     @Override
-    public void bindView(View view, Context context, Cursor cursor) {
+    public void bindView(View view, final Context context, Cursor cursor) {
+
+        final View myView = view;
 
         TextView taskTitle = (TextView) view.findViewById(R.id.taskTitle);
         TextView taskTime = (TextView) view.findViewById(R.id.taskTime);
-        Button taskUserButton = (Button) view.findViewById(R.id.taskUserButton);
+        final Button taskUserButton = (Button) view.findViewById(R.id.taskUserButton);
 
         final Task t = TaskRepository.cursorToTask(cursor);
 
@@ -64,6 +74,29 @@ public class TaskCursorAdapter extends CursorAdapter {
             taskUserButton.setText(u.getName());
 
         }
+
+        taskUserButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final PopupMenu menu = new PopupMenu(context, view);
+                ArrayList<String> users = userRepository.getUserNamesList();
+                for (String name : users) {
+                    if (!name.equals(taskUserButton.getText())) {
+                        menu.getMenu().add(name);
+                    }
+                }
+                menu.show();
+
+                menu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem menuItem) {
+                        joinsRepository.updateTaskUser(t, userRepository.getUserByName(menuItem.toString()));
+                        notifyDataSetChanged();
+                        return true;
+                    }
+                });
+            }
+        });
 
         ImageButton pencilButton = (ImageButton) view.findViewById(R.id.pencilButton);
         pencilButton.setOnClickListener(new View.OnClickListener() {

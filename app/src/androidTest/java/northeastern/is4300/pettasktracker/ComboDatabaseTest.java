@@ -115,4 +115,30 @@ public class ComboDatabaseTest {
 
     }
 
+    @Test
+    public void testReassignTaskUser() {
+        Pet pet = new Pet("Fluffy", "Cat");
+        petRepository.insertAndSetId(pet);
+
+        User user = new User("Diana", 1);
+        userRepository.insertAndSetId(user);
+
+        Task task = new Task(Task.TASK_TYPE.Walk, "12:00", "Daily");
+        task.setUserId(user.getId());
+        task.setPetId(pet.getId());
+        taskRepository.insertAndSetId(task);
+
+        User user2 = new User("Jackson", 1);
+        userRepository.insertAndSetId(user2);
+
+        joinsRepository.updateTaskUser(task, user2);
+
+        Task updatedTask = taskRepository.getTaskById(task.getId());
+
+        assertNotNull(updatedTask);
+        assertEquals(updatedTask.getType(), Task.TASK_TYPE.Walk.name());
+        assertEquals(joinsRepository.getUserByTask(updatedTask).getName(), "Jackson");
+        assertEquals(updatedTask.getUserId(), user2.getId());
+    }
+
 }
