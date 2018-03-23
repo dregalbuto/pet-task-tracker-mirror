@@ -176,4 +176,5 @@ public class TaskRepository {
         values.put(KEY_USER_ID, newTask.getUserId());
         database.update(TABLE_TASKS, values, "_id = " + taskId, null);
     }
+
 }
