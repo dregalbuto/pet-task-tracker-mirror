@@ -5,6 +5,8 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
+import static northeastern.is4300.pettasktracker.data.TaskRepository.TABLE_TASKS;
+
 /**
  *
  */
@@ -36,10 +38,10 @@ public class JoinsRepository {
                 + ", "
                 + PetRepository.TABLE_PETS + "." + PetRepository.KEY_PET_TYPE
                 + " FROM " + PetRepository.TABLE_PETS
-                + " JOIN " + TaskRepository.TABLE_TASKS
-                + " ON " + TaskRepository.TABLE_TASKS + "." + TaskRepository.KEY_PET_ID
+                + " JOIN " + TABLE_TASKS
+                + " ON " + TABLE_TASKS + "." + TaskRepository.KEY_PET_ID
                 + " = " + PetRepository.TABLE_PETS + "." + PetRepository.KEY_ID
-                + " WHERE " + TaskRepository.TABLE_TASKS + "." + TaskRepository.KEY_ID
+                + " WHERE " + TABLE_TASKS + "." + TaskRepository.KEY_ID
                 + " = " + taskId + ";";
         Cursor cursor = database.rawQuery(selectQuery, null);
 
@@ -65,10 +67,10 @@ public class JoinsRepository {
                 + ", "
                 + UserRepository.TABLE_USERS + "." + UserRepository.KEY_USER_ISADMIN
                 + " FROM " + UserRepository.TABLE_USERS
-                + " JOIN " + TaskRepository.TABLE_TASKS
-                + " ON " + TaskRepository.TABLE_TASKS + "." + TaskRepository.KEY_USER_ID
+                + " JOIN " + TABLE_TASKS
+                + " ON " + TABLE_TASKS + "." + TaskRepository.KEY_USER_ID
                 + " = " + UserRepository.TABLE_USERS + "." + UserRepository.KEY_ID
-                + " WHERE " + TaskRepository.TABLE_TASKS + "." + TaskRepository.KEY_ID
+                + " WHERE " + TABLE_TASKS + "." + TaskRepository.KEY_ID
                 + " = " + taskId + ";";
         Cursor cursor = database.rawQuery(selectQuery, null);
 
@@ -82,5 +84,13 @@ public class JoinsRepository {
         }
 
         return u;
+    }
+
+    public Cursor getFilteredTasksCursor(Pet pet) {
+        String selectQuery =  "SELECT *" +
+                " FROM " + TABLE_TASKS
+                + " WHERE " + TaskRepository.KEY_PET_ID
+                + " = " + pet.getId() + ";";
+        return database.rawQuery(selectQuery, null);
     }
 }
