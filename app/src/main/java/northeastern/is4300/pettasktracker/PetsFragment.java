@@ -24,6 +24,7 @@ import northeastern.is4300.pettasktracker.data.PetClient;
 public class PetsFragment extends Fragment {
 
     private PetClient client;
+    private ArrayList<Pet> petsList;
     private PetArrayAdapter petArrayAdapter;
 
     public static PetsFragment newInstance() {
@@ -46,7 +47,7 @@ public class PetsFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 Intent intent = new Intent(getActivity(), ViewPetActivity.class);
-                intent.putExtra("PET_INDEX", position);
+                intent.putExtra("PET_ID", petsList.get(position).getId());
                 startActivity(intent);
             }
         });
@@ -70,9 +71,9 @@ public class PetsFragment extends Fragment {
             public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
 
                 if(response != null) {
-                    final ArrayList<Pet> pets = Pet.fromJson(response);
+                    petsList = Pet.fromJson(response);
                     petArrayAdapter.clear();
-                    for (Pet pet : pets) {
+                    for (Pet pet : petsList) {
                         petArrayAdapter.add(pet); // add book through the adapter
                     }
                     petArrayAdapter.notifyDataSetChanged();

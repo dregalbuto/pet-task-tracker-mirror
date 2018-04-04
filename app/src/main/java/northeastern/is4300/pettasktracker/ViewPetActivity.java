@@ -10,16 +10,28 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import java.util.HashMap;
+import com.loopj.android.http.JsonHttpResponseHandler;
 
+import org.json.JSONObject;
+
+import cz.msebera.android.httpclient.Header;
 import northeastern.is4300.pettasktracker.adapters.TaskCursorAdapter;
 import northeastern.is4300.pettasktracker.data.JoinsRepository;
+import northeastern.is4300.pettasktracker.data.Pet;
+import northeastern.is4300.pettasktracker.data.PetClient;
 import northeastern.is4300.pettasktracker.data.PetRepository;
 
 public class ViewPetActivity extends AppCompatActivity {
 
+    private PetClient client;
     private PetRepository petRepository;
     private JoinsRepository joinsRepository;
+
+    private static class PetDetails {
+        public Pet pet;
+        public TextView petName;
+        public ImageView petIcon;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,28 +40,36 @@ public class ViewPetActivity extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        final PetDetails petDetails = new PetDetails();
+        petDetails.petName = (TextView) findViewById(R.id.textView);
+        petDetails.petIcon = (ImageView) findViewById(R.id.petProfileIcon);
+        petDetails.pet = new Pet();
+
         Bundle b = getIntent().getExtras();
         if (b != null) {
-            int petIndex = b.getInt("PET_INDEX");
+            long petId = b.getLong("PET_ID");
 
+            client = new PetClient();
+            client.getPets("/" + petId, new JsonHttpResponseHandler() {
+                @Override
+                public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                    if(response != null) {
+                        petDetails.pet = Pet.fromJson(response);
+                        petDetails.petName.setText(petDetails.pet.getName());
+                        if (petDetails.pet.getType().equals("Dog")) {
+                            petDetails.petIcon.setImageDrawable(getResources()
+                                    .getDrawable(R.drawable.dog_icon_100));
+                        }
+                    }
+
+                }
+            });
             petRepository = new PetRepository(this);
             petRepository.open();
-            HashMap<String, String> targetPet = petRepository.getPetList().get(petIndex);
-
-            String petName = targetPet.get("name");
-            String petType = targetPet.get("type");
-
-            TextView nameText = (TextView) findViewById(R.id.textView);
-            nameText.setText(petName);
-
-            ImageView pet_icon = (ImageView) findViewById(R.id.petProfileIcon);
-            if (petType.equals("Dog")) {
-                pet_icon.setImageDrawable(getResources().getDrawable(R.drawable.dog_icon_100));
-            }
-
             joinsRepository = new JoinsRepository(this);
             joinsRepository.open();
-            Cursor taskCursor = joinsRepository.getFilteredTasksCursor(petRepository.getPetByName(petName));
+            Cursor taskCursor = joinsRepository
+                    .getFilteredTasksCursor(petRepository.getPetByName("Rudy"));
 
             final ListView listView = (ListView) findViewById(R.id.pet_task_list);
 
@@ -57,8 +77,6 @@ public class ViewPetActivity extends AppCompatActivity {
             listView.setAdapter(tasksAdapter);
             tasksAdapter.changeCursor(taskCursor);
         }
-
-
 
          /* Set up add task button */
         Button addTaskButton = (Button) findViewById(R.id.button_pet_add_task);
