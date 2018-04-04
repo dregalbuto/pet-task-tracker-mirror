@@ -59,8 +59,7 @@ public class TaskRepository {
     public Cursor getTasksCursor() {
         String selectQuery =  "SELECT *" +
                 " FROM " + TABLE_TASKS;
-        Cursor cursor = database.rawQuery(selectQuery, null);
-        return cursor;
+        return database.rawQuery(selectQuery, null);
     }
 
     public long insertAndSetId(Task task) {
@@ -177,4 +176,5 @@ public class TaskRepository {
         values.put(KEY_USER_ID, newTask.getUserId());
         database.update(TABLE_TASKS, values, "_id = " + taskId, null);
     }
+
 }
