@@ -1,5 +1,11 @@
 package northeastern.is4300.pettasktracker.data;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+
 /**
  * Class for a Pet
  */
@@ -42,6 +48,38 @@ public class Pet {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public static Pet fromJson(JSONObject jsonObject) {
+        Pet pet = new Pet();
+        try {
+            pet.id = jsonObject.has("id") ? jsonObject.getLong("id") : 0;
+            pet.name = jsonObject.has("name") ? jsonObject.getString("name") : "";
+            pet.type = jsonObject.has("type") ? jsonObject.getString("type") : "";
+        }
+        catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return pet;
+    }
+
+    public static ArrayList<Pet> fromJson(JSONArray jsonArray) {
+        ArrayList<Pet> pets = new ArrayList<>();
+        for (int i = 0; i < jsonArray.length(); i++) {
+            JSONObject petJson = null;
+            try {
+                petJson = jsonArray.getJSONObject(i);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                continue;
+            }
+            Pet pet = Pet.fromJson(petJson);
+            if (pet != null) {
+                pets.add(pet);
+            }
+        }
+        return pets;
     }
 
     @Override
