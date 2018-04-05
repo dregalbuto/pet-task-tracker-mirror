@@ -1,7 +1,6 @@
 package northeastern.is4300.pettasktracker;
 
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -11,12 +10,22 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
-import northeastern.is4300.pettasktracker.adapters.PetCursorAdapter;
-import northeastern.is4300.pettasktracker.data.PetRepository;
+import com.loopj.android.http.JsonHttpResponseHandler;
+
+import org.json.JSONArray;
+
+import java.util.ArrayList;
+
+import cz.msebera.android.httpclient.Header;
+import northeastern.is4300.pettasktracker.adapters.PetArrayAdapter;
+import northeastern.is4300.pettasktracker.data.Pet;
+import northeastern.is4300.pettasktracker.data.PetClient;
 
 public class PetsFragment extends Fragment {
 
-    private PetRepository petRepository;
+    private PetClient client;
+    private ArrayList<Pet> petsList;
+    private PetArrayAdapter petArrayAdapter;
 
     public static PetsFragment newInstance() {
         PetsFragment fragment = new PetsFragment();
@@ -28,26 +37,17 @@ public class PetsFragment extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_pets, container, false);
 
-        petRepository = new PetRepository(this.getContext());
-        petRepository.open();
+        final ListView listViewPets = (ListView) v.findViewById(R.id.pets_list_view);
+        petsList = new ArrayList<Pet>();
+        petArrayAdapter = new PetArrayAdapter(this.getContext(), petsList);
+        listViewPets.setAdapter(petArrayAdapter);
+        fetchPets();
 
-        if (petRepository.getPetList().size() == 0) {
-            petRepository.loadSomePets();
-        }
-
-        Cursor petsCursor = petRepository.getPetsCursor();
-
-        final ListView listView = (ListView) v.findViewById(R.id.pets_list_view);
-
-        final PetCursorAdapter petsAdapter = new PetCursorAdapter(getActivity(), petsCursor);
-        listView.setAdapter(petsAdapter);
-        petsAdapter.changeCursor(petsCursor);
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listViewPets.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 Intent intent = new Intent(getActivity(), ViewPetActivity.class);
-                intent.putExtra("PET_INDEX", position);
+                intent.putExtra("PET_ID", petsList.get(position).getId());
                 startActivity(intent);
             }
         });
@@ -62,6 +62,23 @@ public class PetsFragment extends Fragment {
         });
 
         return v;
+    }
+
+    private void fetchPets() {
+        client = new PetClient();
+        client.getPets("", new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+                if(response != null) {
+                    petsList = Pet.fromJson(response);
+                    petArrayAdapter.clear();
+                    for (Pet pet : petsList) {
+                        petArrayAdapter.add(pet);
+                    }
+                    petArrayAdapter.notifyDataSetChanged();
+                }
+            }
+        });
     }
 
 }

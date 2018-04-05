@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import northeastern.is4300.pettasktracker.data.Pet;
-import northeastern.is4300.pettasktracker.data.PetRepository;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNotNull;

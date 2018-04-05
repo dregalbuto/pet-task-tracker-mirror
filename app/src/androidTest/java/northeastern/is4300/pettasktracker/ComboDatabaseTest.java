@@ -9,13 +9,9 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import northeastern.is4300.pettasktracker.data.JoinsRepository;
 import northeastern.is4300.pettasktracker.data.Pet;
-import northeastern.is4300.pettasktracker.data.PetRepository;
 import northeastern.is4300.pettasktracker.data.Task;
-import northeastern.is4300.pettasktracker.data.TaskRepository;
 import northeastern.is4300.pettasktracker.data.User;
-import northeastern.is4300.pettasktracker.data.UserRepository;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNotNull;
@@ -136,7 +132,7 @@ public class ComboDatabaseTest {
         Task updatedTask = taskRepository.getTaskById(task.getId());
 
         assertNotNull(updatedTask);
-        assertEquals(updatedTask.getType(), Task.TASK_TYPE.Walk.name());
+        assertEquals(updatedTask.getTaskType(), Task.TASK_TYPE.Walk.name());
         assertEquals(joinsRepository.getUserByTask(updatedTask).getName(), "Jackson");
         assertEquals(updatedTask.getUserId(), user2.getId());
     }

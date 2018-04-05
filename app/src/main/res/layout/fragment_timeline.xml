@@ -8,7 +8,7 @@
     tools:context="northeastern.is4300.pettasktracker.UsersFragment">
 
     <ListView
-        android:id="@+id/home_tasks_listview"
+        android:id="@+id/users_listview"
         android:layout_width="0dp"
         android:layout_height="405dp"
         android:visibility="visible"
@@ -28,7 +28,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/home_tasks_listview"
+        app:layout_constraintTop_toBottomOf="@+id/users_listview"
         app:layout_constraintVertical_bias="1.0" />
 
 </android.support.constraint.ConstraintLayout>

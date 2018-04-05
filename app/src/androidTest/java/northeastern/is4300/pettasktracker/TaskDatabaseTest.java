@@ -11,7 +11,6 @@ import org.junit.runner.RunWith;
 import java.util.List;
 
 import northeastern.is4300.pettasktracker.data.Task;
-import northeastern.is4300.pettasktracker.data.TaskRepository;
 
 import static junit.framework.Assert.assertNotNull;
 import static junit.framework.Assert.assertTrue;
@@ -50,9 +49,9 @@ public class TaskDatabaseTest {
         List<Task> tasks = taskRepository.getTaskListAsTasks();
 
         assertThat(tasks.size(), is(1));
-        assertTrue(tasks.get(0).getType().equals("Walk"));
+        assertTrue(tasks.get(0).getTaskType().equals("Walk"));
         assertTrue(tasks.get(0).getTaskTime().equals("12:00"));
-        assertTrue(tasks.get(0).getRepeat().equals("Daily"));
+        assertTrue(tasks.get(0).getTaskRepeat().equals("Daily"));
     }
 
     @Test
@@ -115,9 +114,9 @@ public class TaskDatabaseTest {
         taskRepository.updateTask(t.getId(), t2);
 
         Task t3 = taskRepository.getTaskById(t.getId());
-        assertEquals(t3.getType(), Task.TASK_TYPE.Walk.name());
+        assertEquals(t3.getTaskType(), Task.TASK_TYPE.Walk.name());
         assertEquals(t3.getTaskTime(), "6:00");
-        assertEquals(t3.getRepeat(), "Weekly");
+        assertEquals(t3.getTaskRepeat(), "Weekly");
     }
 
 }

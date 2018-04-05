@@ -4,8 +4,7 @@ import android.database.Cursor;
 import android.test.ActivityInstrumentationTestCase2;
 import android.widget.ListView;
 
-import northeastern.is4300.pettasktracker.adapters.PetCursorAdapter;
-import northeastern.is4300.pettasktracker.data.PetRepository;
+import northeastern.is4300.pettasktracker.adapters.PetArrayAdapter;
 
 /**
  *
@@ -39,7 +38,7 @@ public class PetsFragmentTest extends ActivityInstrumentationTestCase2<FragmentC
         assertNotNull(petsCursor);
 
         // Setup cursor adapter using cursor from last step
-        final PetCursorAdapter petsAdapter = new PetCursorAdapter(petsFragment.getContext(), petsCursor);
+        final PetArrayAdapter petsAdapter = new PetArrayAdapter(petsFragment.getContext(), petsCursor);
 
         this.getActivity().runOnUiThread(new Runnable() {
             @Override
