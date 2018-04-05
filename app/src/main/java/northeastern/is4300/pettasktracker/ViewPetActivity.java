@@ -1,7 +1,6 @@
 package northeastern.is4300.pettasktracker;
 
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -12,20 +11,25 @@ import android.widget.TextView;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 import cz.msebera.android.httpclient.Header;
-import northeastern.is4300.pettasktracker.adapters.TaskCursorAdapter;
-import northeastern.is4300.pettasktracker.data.JoinsRepository;
+import northeastern.is4300.pettasktracker.adapters.TaskArrayAdapter;
 import northeastern.is4300.pettasktracker.data.Pet;
 import northeastern.is4300.pettasktracker.data.PetClient;
-import northeastern.is4300.pettasktracker.data.PetRepository;
+import northeastern.is4300.pettasktracker.data.Task;
+import northeastern.is4300.pettasktracker.data.TaskClient;
 
 public class ViewPetActivity extends AppCompatActivity {
 
-    private PetClient client;
-    private PetRepository petRepository;
-    private JoinsRepository joinsRepository;
+    private PetClient petClient;
+    private TaskClient taskClient;
+
+    private ArrayList<Task> tasksArrayList;
+    private TaskArrayAdapter taskArrayAdapter;
 
     private static class PetDetails {
         public Pet pet;
@@ -49,8 +53,8 @@ public class ViewPetActivity extends AppCompatActivity {
         if (b != null) {
             long petId = b.getLong("PET_ID");
 
-            client = new PetClient();
-            client.getPets("/" + petId, new JsonHttpResponseHandler() {
+            petClient = new PetClient();
+            petClient.getPets("/" + petId, new JsonHttpResponseHandler() {
                 @Override
                 public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                     if(response != null) {
@@ -64,18 +68,14 @@ public class ViewPetActivity extends AppCompatActivity {
 
                 }
             });
-            petRepository = new PetRepository(this);
-            petRepository.open();
-            joinsRepository = new JoinsRepository(this);
-            joinsRepository.open();
-            Cursor taskCursor = joinsRepository
-                    .getFilteredTasksCursor(petRepository.getPetByName("Rudy"));
 
-            final ListView listView = (ListView) findViewById(R.id.pet_task_list);
+            final ListView listViewTasks = (ListView) findViewById(R.id.pet_task_list);
 
-            final TaskCursorAdapter tasksAdapter = new TaskCursorAdapter(this, taskCursor);
-            listView.setAdapter(tasksAdapter);
-            tasksAdapter.changeCursor(taskCursor);
+            tasksArrayList = new ArrayList<Task>();
+            taskArrayAdapter = new TaskArrayAdapter(this, tasksArrayList);
+            listViewTasks.setAdapter(taskArrayAdapter);
+            final Pet finalPet = petDetails.pet;
+            fetchTasks(finalPet);
         }
 
          /* Set up add task button */
@@ -85,6 +85,24 @@ public class ViewPetActivity extends AppCompatActivity {
                 Intent myIntent = new Intent(ViewPetActivity.this, AddEditTaskActivity.class);
                 // TODO save this pet's name in Intent
                 startActivity(myIntent);
+            }
+        });
+    }
+
+    private void fetchTasks(final Pet pet) {
+        taskClient = new TaskClient();
+        taskClient.getTasks("", new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+                if(response != null) {
+                    tasksArrayList = Task.fromJson(response);
+                    taskArrayAdapter.clear();
+                    for (Task task : tasksArrayList) {
+                        if (task.getPet().getId() == pet.getId())
+                        taskArrayAdapter.add(task);
+                    }
+                    taskArrayAdapter.notifyDataSetChanged();
+                }
             }
         });
     }

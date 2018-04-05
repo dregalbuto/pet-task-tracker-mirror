@@ -9,12 +9,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.loopj.android.http.JsonHttpResponseHandler;
+
 import northeastern.is4300.pettasktracker.data.Pet;
-import northeastern.is4300.pettasktracker.data.PetRepository;
+import northeastern.is4300.pettasktracker.data.PetClient;
 
 public class AddPetActivity extends AppCompatActivity {
 
-    private PetRepository petRepository;
+    private PetClient petClient;
 
     @Override
     public void onBackPressed() {
@@ -24,8 +26,6 @@ public class AddPetActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        petRepository = new PetRepository(this);
-        petRepository.open();
 
         setContentView(R.layout.activity_add_pet);
 
@@ -37,7 +37,6 @@ public class AddPetActivity extends AppCompatActivity {
         spinner.setAdapter(adapter);
 
         /* Set up confirmation button */
-        // TODO button consistency
         final Button confirmationButton = (Button) findViewById(R.id.button_pet_confirm);
         confirmationButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -50,13 +49,18 @@ public class AddPetActivity extends AppCompatActivity {
                 String petType = petTypeBox.getSelectedItem().toString();
 
                 Pet pet = new Pet(petName, petType);
-                petRepository.insertAndSetId(pet);
+                postPet(pet);
 
                 Intent myIntent = new Intent(AddPetActivity.this, MainActivity.class);
                 startActivity(myIntent);
 
             }
         });
+    }
+
+    private void postPet(Pet pet) {
+        petClient = new PetClient();
+        petClient.addPet(this,"", pet, new JsonHttpResponseHandler());
     }
 
 }

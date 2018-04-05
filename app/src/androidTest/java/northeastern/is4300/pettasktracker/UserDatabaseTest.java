@@ -11,7 +11,6 @@ import org.junit.runner.RunWith;
 import java.util.List;
 
 import northeastern.is4300.pettasktracker.data.User;
-import northeastern.is4300.pettasktracker.data.UserRepository;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNotNull;

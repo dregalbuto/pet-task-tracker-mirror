@@ -5,7 +5,6 @@ import android.test.ActivityInstrumentationTestCase2;
 import android.widget.ListView;
 
 import northeastern.is4300.pettasktracker.adapters.PetArrayAdapter;
-import northeastern.is4300.pettasktracker.data.PetRepository;
 
 /**
  *

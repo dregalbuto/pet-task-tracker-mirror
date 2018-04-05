@@ -4,13 +4,22 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
-import java.util.HashMap;
+import com.loopj.android.http.JsonHttpResponseHandler;
 
-import northeastern.is4300.pettasktracker.data.UserRepository;
+import org.json.JSONObject;
+
+import cz.msebera.android.httpclient.Header;
+import northeastern.is4300.pettasktracker.data.User;
+import northeastern.is4300.pettasktracker.data.UserClient;
 
 public class ViewUserActivity extends AppCompatActivity {
 
-    private UserRepository userRepository;
+    private UserClient userClient;
+
+    private static class UserDetails {
+        public User user;
+        public TextView userName;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,21 +28,24 @@ public class ViewUserActivity extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        final UserDetails userDetails = new UserDetails();
+        userDetails.userName = (TextView) findViewById(R.id.textView);
+
         // Load user info from previous screen
         Bundle b = getIntent().getExtras();
         if (b != null) {
-            int userIndex = b.getInt("USER_INDEX");
+            long userId = b.getLong("USER_ID");
+            userClient = new UserClient();
+            userClient.getUsers("/" + userId, new JsonHttpResponseHandler() {
+                @Override
+                public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                    if(response != null) {
+                        userDetails.user = User.fromJson(response);
+                        userDetails.userName.setText(userDetails.user.getName());
+                    }
 
-            userRepository = new UserRepository(this);
-            userRepository.open();
-            HashMap<String, String> targetUser = userRepository.getUserList().get(userIndex);
-
-            String userName = targetUser.get("name");
-            int userIsAdmin = Integer.parseInt(targetUser.get("isAdmin"));
-
-            TextView nameText = (TextView) findViewById(R.id.textView);
-            nameText.setText(userName);
-
+                }
+            });
         }
     }
 }

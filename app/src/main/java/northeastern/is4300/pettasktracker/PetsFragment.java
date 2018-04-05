@@ -38,8 +38,8 @@ public class PetsFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_pets, container, false);
 
         final ListView listViewPets = (ListView) v.findViewById(R.id.pets_list_view);
-        ArrayList<Pet> pets = new ArrayList<Pet>();
-        petArrayAdapter = new PetArrayAdapter(this.getContext(), pets);
+        petsList = new ArrayList<Pet>();
+        petArrayAdapter = new PetArrayAdapter(this.getContext(), petsList);
         listViewPets.setAdapter(petArrayAdapter);
         fetchPets();
 
@@ -69,16 +69,14 @@ public class PetsFragment extends Fragment {
         client.getPets("", new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
-
                 if(response != null) {
                     petsList = Pet.fromJson(response);
                     petArrayAdapter.clear();
                     for (Pet pet : petsList) {
-                        petArrayAdapter.add(pet); // add book through the adapter
+                        petArrayAdapter.add(pet);
                     }
                     petArrayAdapter.notifyDataSetChanged();
                 }
-
             }
         });
     }

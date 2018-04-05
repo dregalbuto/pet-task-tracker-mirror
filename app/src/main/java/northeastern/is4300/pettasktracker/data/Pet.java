@@ -21,9 +21,13 @@ public class Pet {
     }
 
     public Pet() {
-        this.id = 0;
-        this.name = new String();
-        this.type = new String();
+        this.id = -1;
+    }
+
+    public Pet(Pet p) {
+        this.id = p.getId();
+        this.name = p.getName();
+        this.type = p.getType();
     }
 
     public long getId() {
@@ -81,6 +85,20 @@ public class Pet {
         }
         return pets;
     }
+
+    public static JSONObject toJson(Pet pet) {
+        JSONObject object = new JSONObject();
+        try {
+            object.put("id", pet.getId());
+            object.put("name", pet.getName());
+            object.put("type", pet.getType());
+        }
+        catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return object;
+    }
+
 
     @Override
     public boolean equals(Object o) {
