@@ -28,6 +28,10 @@
             android:label="@string/title_activity_add_pet"
             android:parentActivityName=".MainActivity" />
         <activity
+            android:name=".AddUserActivity"
+            android:label="@string/title_activity_add_user"
+            android:parentActivityName=".LoginActivity" />
+        <activity
             android:name=".AddEditTaskActivity"
             android:label="@string/title_activity_add_task"
             android:windowSoftInputMode="stateHidden"
