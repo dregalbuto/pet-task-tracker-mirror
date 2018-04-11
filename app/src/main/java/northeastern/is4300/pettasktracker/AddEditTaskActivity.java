@@ -49,6 +49,14 @@ public class AddEditTaskActivity extends AppCompatActivity {
     Spinner userSpinner;
     Spinner petSpinner;
 
+    private ArrayAdapter<CharSequence> makeAdapter(int textArrayResId) {
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                textArrayResId,
+                R.layout.item_spinner);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        return adapter;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,17 +84,13 @@ public class AddEditTaskActivity extends AppCompatActivity {
         loadPetSpinnerData();
 
         final Spinner spinner1 = (Spinner) findViewById(R.id.spinner_task_type);
-        ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(this,
-                R.array.array_task_type, android.R.layout.simple_spinner_item);
-        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ArrayAdapter<CharSequence> adapter1 = makeAdapter(R.array.array_task_type);
         spinner1.setAdapter(adapter1);
         if (sourceTask != null) {
             spinner1.setSelection(adapter1.getPosition(sourceTask.getTaskType()));
         }
 
-        ArrayAdapter<CharSequence> adapter4 = ArrayAdapter.createFromResource(this,
-                R.array.array_task_time, android.R.layout.simple_spinner_item);
-        adapter4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ArrayAdapter<CharSequence> adapter4 = makeAdapter(R.array.array_task_time);
         final Spinner spinner4 = (Spinner) findViewById(R.id.spinner_task_time);
         spinner4.setAdapter(adapter4);
         if (sourceTask != null) {
@@ -94,9 +98,7 @@ public class AddEditTaskActivity extends AppCompatActivity {
         }
 
         final Spinner spinner5 = (Spinner) findViewById(R.id.spinner_task_repeat);
-        ArrayAdapter<CharSequence> adapter5 = ArrayAdapter.createFromResource(this,
-                R.array.array_task_repeat, android.R.layout.simple_spinner_item);
-        adapter5.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ArrayAdapter<CharSequence> adapter5 = makeAdapter(R.array.array_task_repeat);
         spinner5.setAdapter(adapter5);
         if (sourceTask != null) {
             spinner5.setSelection(adapter5.getPosition(sourceTask.getTaskRepeat()));
@@ -130,18 +132,6 @@ public class AddEditTaskActivity extends AppCompatActivity {
                 System.out.println("userName: " + userName);
                 getPetQueue(petName, userName);
 
-
-                //System.out.println("sourceTask: " + Task.toJson(sourceTask));
-                //sourceTask.setPet(new Pet("Rudy", "Dog"));
-                //sourceTask.setUser(new User("Martha", 1));
-/*
-                if (taskId > 0) {
-                    updateTask();
-                }
-                else {
-                    addTask();
-                }
-                */
             }
         });
 
@@ -162,7 +152,7 @@ public class AddEditTaskActivity extends AppCompatActivity {
                         AddEditTaskActivity.users.add(u.getName());
                     }
                     ArrayAdapter<String> adapter = new ArrayAdapter<String>(AddEditTaskActivity.this,
-                            android.R.layout.simple_spinner_dropdown_item,
+                            R.layout.item_spinner,
                             AddEditTaskActivity.users);
                     userSpinner.setAdapter(adapter);
                     if (sourceTask != null) {
@@ -200,7 +190,7 @@ public class AddEditTaskActivity extends AppCompatActivity {
                                 AddEditTaskActivity.pets.add(p.getName());
                             }
                             ArrayAdapter<String> adapter = new ArrayAdapter<String>(AddEditTaskActivity.this,
-                                    android.R.layout.simple_spinner_dropdown_item,
+                                    R.layout.item_spinner,
                                     AddEditTaskActivity.pets);
                             petSpinner.setAdapter(adapter);
                             if (sourceTask != null) {

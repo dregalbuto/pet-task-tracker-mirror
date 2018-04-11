@@ -37,24 +37,15 @@
     <string name="prompt_pet_confirm">Save Pet</string>
 
     <!-- add task -->
-    <string name="prompt_task_type">Type</string>
+    <string name="prompt_task_type">Task Type</string>
     <string-array name="array_task_type">
         <item>Food</item>
         <item>Walk</item>
         <item>Medication</item>
     </string-array>
     <string name="prompt_task_pet">Pet</string>
-    <string-array name="array_task_pet">
-        <item>Cookie</item>
-        <item>Rudy</item>
-    </string-array>
     <string name="prompt_task_user">User</string>
-    <string-array name="array_task_user">
-        <item>Martha</item>
-        <item>Stuart</item>
-        <item>Alex</item>
-    </string-array>
-    <string name="prompt_task_time">Time</string>
+    <string name="prompt_task_time">Task Time</string>
     <string-array name="array_task_time">
         <item>12:00 PM</item>
         <item>1:00 PM</item>

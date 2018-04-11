@@ -3,6 +3,7 @@ package northeastern.is4300.pettasktracker;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,6 +59,18 @@ public class TimelineFragment extends Fragment {
                 startActivity(myIntent);
             }
         });
+
+        final SwipeRefreshLayout mySwipeRefreshLayout = v.findViewById(R.id.swiperefresh);
+        mySwipeRefreshLayout.setOnRefreshListener(
+                new SwipeRefreshLayout.OnRefreshListener() {
+                    @Override
+                    public void onRefresh() {
+                        fetchTasks();
+                        mySwipeRefreshLayout.setRefreshing(false);
+                    }
+                }
+        );
+
 
         return v;
     }

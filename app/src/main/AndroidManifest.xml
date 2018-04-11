@@ -30,6 +30,7 @@
         <activity
             android:name=".AddEditTaskActivity"
             android:label="@string/title_activity_add_task"
+            android:windowSoftInputMode="stateHidden"
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".MainActivity"

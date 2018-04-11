@@ -42,7 +42,7 @@ public class AddPetActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 /** Save a pet **/
-                EditText petNameBox = findViewById(R.id.edit_pet_name);
+                EditText petNameBox = findViewById(R.id.petNameEdit);
                 String petName = petNameBox.getText().toString();
 
                 Spinner petTypeBox = findViewById(R.id.spinner_pet_type);

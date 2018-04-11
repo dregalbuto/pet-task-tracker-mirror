@@ -17,4 +17,14 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="DefaultTextStyle">
+        <item name="android:textSize">21sp</item>
+    </style>
+
+    <style name="DefaultSpinnerStyle">
+        <item name="android:textSize">21sp</item>
+        <item name="color">@android:color/black</item>
+
+    </style>
+
 </resources>
