@@ -26,8 +26,10 @@ public class User {
         this.isAdmin = user.getIsAdmin();
     }
 
-    public User(String name, int isAdmin, ArrayList<Task> tasks) {
+    public User(String name, String email, String password, int isAdmin) {
         this.name = name;
+        this.email = email;
+        this.password = password;
         this.isAdmin = isAdmin;
     }
 

@@ -13,6 +13,7 @@
     <string name="title_activity_add_task">Add a Task</string>
     <string name="title_activity_edit_task">Edit Task</string>
     <string name="title_activity_main">Pet Task Tracker</string>
+    <string name="title_activity_add_user">Create an Account</string>
 
     <!-- view pets -->
     <string name="pet_name_1">Cookie</string>
