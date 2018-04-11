@@ -2,6 +2,7 @@ package northeastern.is4300.pettasktracker.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,21 +13,27 @@ import android.widget.ImageButton;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
-import com.loopj.android.http.JsonHttpResponseHandler;
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.RetryPolicy;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-import cz.msebera.android.httpclient.Header;
 import northeastern.is4300.pettasktracker.AddEditTaskActivity;
 import northeastern.is4300.pettasktracker.GlobalVariables;
 import northeastern.is4300.pettasktracker.R;
+import northeastern.is4300.pettasktracker.data.MySingleton;
 import northeastern.is4300.pettasktracker.data.Task;
-import northeastern.is4300.pettasktracker.data.TaskClient;
 import northeastern.is4300.pettasktracker.data.User;
-import northeastern.is4300.pettasktracker.data.UserClient;
 
 /**
  *
@@ -35,13 +42,14 @@ import northeastern.is4300.pettasktracker.data.UserClient;
 public class TaskArrayAdapter extends ArrayAdapter<Task> {
 
     private static ArrayList<User> usersArrayList;
+    static boolean success = false;
 
     private static class ViewHolder {
-        public TextView taskTitle;
-        public TextView taskTime;
-        public final Button taskUserButton;
+        TextView taskTitle;
+        TextView taskTime;
+        final Button taskUserButton;
 
-        public ViewHolder(Button taskUserButton) {
+        ViewHolder(Button taskUserButton) {
             this.taskUserButton = taskUserButton;
         }
     }
@@ -50,12 +58,14 @@ public class TaskArrayAdapter extends ArrayAdapter<Task> {
         super(context, 0, tasks);
     }
 
+    @NonNull
     @Override
-    public View getView(int position, View view, ViewGroup parent) {
+    public View getView(int position, View view, @NonNull ViewGroup parent) {
         final Task task = getItem(position);
         TaskArrayAdapter.ViewHolder viewHolder;
         if (view == null) {
-            LayoutInflater inflater = (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            LayoutInflater inflater = (LayoutInflater)getContext()
+                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = inflater.inflate(R.layout.item_task, parent, false);
             viewHolder = new ViewHolder((Button) view.findViewById(R.id.taskUserButton));
             viewHolder.taskTitle = (TextView) view.findViewById(R.id.taskTitle);
@@ -65,75 +75,131 @@ public class TaskArrayAdapter extends ArrayAdapter<Task> {
             viewHolder = (TaskArrayAdapter.ViewHolder) view.getTag();
         }
 
-        final View myView = view;
+        final View myFinalView = view;
         String taskTitleString = makeTaskTitle(task.getPet().getName(), task.getTaskType());
         viewHolder.taskTitle.setText(taskTitleString);
         viewHolder.taskTime.setText(task.getTaskTime().toString());
         viewHolder.taskUserButton.setText(task.getUser().getName());
 
         final ViewHolder finalViewHolder = viewHolder;
-
-        viewHolder.taskUserButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                final PopupMenu menu = new PopupMenu(myView.getContext(), view);
-
-                final UserClient userClient = new UserClient();
-                userClient.getUsers("/", new JsonHttpResponseHandler() {
-                    @Override
-                    public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
-                        if(response != null) {
-                            usersArrayList = User.fromJson(response);
-                            for (User u : usersArrayList) {
-                                if (!u.getName().equals(finalViewHolder.taskUserButton.getText())) {
-                                    menu.getMenu().add(u.getName());
-                                }
-                            }
-                        }
-
-                    }
-                });
-                menu.show();
-
-                menu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                    @Override
-                    public boolean onMenuItemClick(MenuItem menuItem) {
-                        userClient.getUsers("/name/" + menuItem.toString(), new JsonHttpResponseHandler() {
-                            @Override
-                            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                                if(response != null) {
-                                    task.setUser(User.fromJson(response));
-                                }
-
-                            }
-                        });
-                        final TaskClient taskClient = new TaskClient();
-                        taskClient.updateTask(myView.getContext(),
-                                Long.toString(task.getId()),
-                                task,
-                                new JsonHttpResponseHandler());
-                        notifyDataSetChanged();
-                        return true;
-                    }
-                });
-            }
-        });
+        final PopupMenu myMenu = new PopupMenu(myFinalView.getContext(), viewHolder.taskUserButton);
+        setup(task, finalViewHolder, myMenu, myFinalView);
 
         ImageButton pencilButton = (ImageButton) view.findViewById(R.id.pencilButton);
         pencilButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent myIntent = new Intent(myView.getContext(), AddEditTaskActivity.class);
+                Intent myIntent = new Intent(myFinalView.getContext(), AddEditTaskActivity.class);
                 myIntent.putExtra(GlobalVariables.KEY_TASK_ID, task.getId());
-                myView.getContext().startActivity(myIntent);
+                myFinalView.getContext().startActivity(myIntent);
             }
         });
 
         return view;
     }
 
-    public static String makeTaskTitle(String petName, String taskType) {
-        String taskTitle = new String();
+    private void setup(final Task task, final ViewHolder h, final PopupMenu myMenu,
+                       final View myFinalView) {
+        h.taskUserButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                RequestQueue requestQueue = MySingleton
+                        .getInstance(view.getContext()).getRequestQueue();
+                StringRequest stringRequest = new StringRequest(Request.Method.GET,
+                        "http://pet-task-tracker.us-east-2.elasticbeanstalk.com/api/users/",
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                try {
+                                    usersArrayList = User.fromJson(new JSONArray(response));
+                                    if (myMenu.getMenu().size() == 0) {
+                                        for (User u : usersArrayList) {
+                                            if (!u.getName().equals(h.taskUserButton.getText())) {
+                                                myMenu.getMenu().add(u.getName());
+                                            }
+                                        }
+                                    }
+                                    setupMenuItem(task, myMenu, myFinalView);
+                                    myMenu.show();
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        error.printStackTrace();
+                    }
+                });
+                int socketTimeout = 30000;
+                RetryPolicy policy = new DefaultRetryPolicy(socketTimeout,
+                        DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                        DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+                stringRequest.setRetryPolicy(policy);
+                requestQueue.add(stringRequest);
+            }
+         });
+    }
+
+    private void setupMenuItem(final Task task, final PopupMenu myMenu,
+                               final View view) {
+            myMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem menuItem) {
+                    RequestQueue requestQueue = MySingleton
+                            .getInstance(view.getContext()).getRequestQueue();
+                    StringRequest stringRequest = new StringRequest(Request.Method.GET,
+                            "http://pet-task-tracker.us-east-2.elasticbeanstalk.com/api/users/name/"
+                                    + menuItem.toString(),
+                            new Response.Listener<String>() {
+                                @Override
+                                public void onResponse(String response) {
+                                    try {
+                                        task.setUser(User.fromJson(new JSONObject(response)));
+                                        updateTask(task, view);
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            error.printStackTrace();
+                        }
+                    });
+                    int socketTimeout = 30000;
+                    RetryPolicy policy = new DefaultRetryPolicy(socketTimeout,
+                            DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                            DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+                    stringRequest.setRetryPolicy(policy);
+                    requestQueue.add(stringRequest);
+
+                    return true;
+                }
+            });
+        }
+
+    private void updateTask(Task task, View view) {
+        System.out.println("updateTask: " + Task.toJson(task));
+        JsonObjectRequest req = new JsonObjectRequest(
+                "http://pet-task-tracker.us-east-2.elasticbeanstalk.com/api/tasks",
+                Task.toJson(task),
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        notifyDataSetChanged();
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                System.out.println(error.toString());
+            }
+        });
+        MySingleton.getInstance(view.getContext()).addToRequestQueue(req);
+    }
+
+    private static String makeTaskTitle(String petName, String taskType) {
+        String taskTitle = "";
 
         switch(taskType) {
             case "Walk":
