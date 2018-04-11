@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:background="?attr/colorButtonNormal">
+        android:background="@drawable/border">
 
         <ImageView
             android:id="@+id/userIcon"
@@ -34,7 +34,7 @@
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/petIcon"
+            app:layout_constraintStart_toEndOf="@+id/userIcon"
             app:layout_constraintTop_toTopOf="parent" />
     </android.support.constraint.ConstraintLayout>
 
