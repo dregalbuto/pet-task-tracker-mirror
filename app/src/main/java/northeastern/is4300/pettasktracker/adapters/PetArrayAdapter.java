@@ -1,6 +1,7 @@
 package northeastern.is4300.pettasktracker.adapters;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,8 +20,8 @@ import northeastern.is4300.pettasktracker.data.Pet;
 public class PetArrayAdapter extends ArrayAdapter<Pet> {
 
     private static class ViewHolder {
-        public TextView petName;
-        public ImageView petIcon;
+        TextView petName;
+        ImageView petIcon;
     }
 
     public PetArrayAdapter(Context context, ArrayList<Pet> pets) {
@@ -28,8 +29,9 @@ public class PetArrayAdapter extends ArrayAdapter<Pet> {
 
     }
 
+    @NonNull
     @Override
-    public View getView(int position, View view, ViewGroup parent) {
+    public View getView(int position, View view, @NonNull ViewGroup parent) {
         final Pet pet = getItem(position);
         ViewHolder viewHolder; // view lookup cache stored in tag
         if (view == null) {
