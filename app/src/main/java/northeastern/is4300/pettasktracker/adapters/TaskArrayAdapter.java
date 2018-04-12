@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
 import android.widget.TextView;
@@ -42,7 +44,6 @@ import northeastern.is4300.pettasktracker.data.User;
 public class TaskArrayAdapter extends ArrayAdapter<Task> {
 
     private static ArrayList<User> usersArrayList;
-    static boolean success = false;
 
     private static class ViewHolder {
         TextView taskTitle;
@@ -92,6 +93,18 @@ public class TaskArrayAdapter extends ArrayAdapter<Task> {
                 Intent myIntent = new Intent(myFinalView.getContext(), AddEditTaskActivity.class);
                 myIntent.putExtra(GlobalVariables.KEY_TASK_ID, task.getId());
                 myFinalView.getContext().startActivity(myIntent);
+            }
+        });
+
+        CheckBox checkBox = view.findViewById(R.id.taskCheckBox);
+        if (task.getIsCompleted() == 1) {
+            checkBox.setChecked(true);
+        }
+        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                task.setIsCompleted((task.getIsCompleted()+1)%2);
+                updateTask(task, myFinalView);
             }
         });
 
