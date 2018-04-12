@@ -20,6 +20,7 @@
             android:id="@+id/addTaskLinearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="2dp"
             android:fadeScrollbars="true"
             android:orientation="vertical"
             app:layout_constraintBottom_toTopOf="@+id/button_task_confirm"
@@ -47,7 +48,7 @@
 
                 <FrameLayout
                     android:id="@+id/frameTaskType"
-                    android:layout_width="250dp"
+                    android:layout_width="280dp"
                     android:layout_height="match_parent"
                     android:padding="12dp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -72,18 +73,18 @@
 
                 <TextView
                     android:id="@+id/textView12"
+                    style="@style/DefaultTextStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="12dp"
                     android:text="@string/prompt_task_pet"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    style="@style/DefaultTextStyle"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <FrameLayout
-                    android:layout_width="250dp"
+                    android:layout_width="280dp"
                     android:layout_height="match_parent"
                     android:padding="12dp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -92,9 +93,9 @@
 
                     <Spinner
                         android:id="@+id/spinner_task_pet"
+                        style="@style/DefaultSpinnerStyle"
                         android:layout_width="match_parent"
-                        android:layout_height="40sp"
-                        style="@style/DefaultSpinnerStyle" />
+                        android:layout_height="40sp" />
                 </FrameLayout>
 
             </android.support.constraint.ConstraintLayout>
@@ -107,18 +108,18 @@
 
                 <TextView
                     android:id="@+id/textView13"
+                    style="@style/DefaultTextStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="12dp"
                     android:text="@string/prompt_task_user"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    style="@style/DefaultTextStyle"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <FrameLayout
-                    android:layout_width="250dp"
+                    android:layout_width="280dp"
                     android:layout_height="match_parent"
                     android:padding="12dp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -127,9 +128,9 @@
 
                     <Spinner
                         android:id="@+id/spinner_task_user"
+                        style="@style/DefaultSpinnerStyle"
                         android:layout_width="match_parent"
-                        android:layout_height="40sp"
-                        style="@style/DefaultSpinnerStyle" />
+                        android:layout_height="40sp" />
                 </FrameLayout>
             </android.support.constraint.ConstraintLayout>
 
@@ -141,18 +142,18 @@
 
                 <TextView
                     android:id="@+id/textView14"
+                    style="@style/DefaultTextStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="12dp"
                     android:text="@string/prompt_task_time"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    style="@style/DefaultTextStyle"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <FrameLayout
-                    android:layout_width="250dp"
+                    android:layout_width="280dp"
                     android:layout_height="match_parent"
                     android:padding="12dp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -161,9 +162,9 @@
 
                     <Spinner
                         android:id="@+id/spinner_task_time"
+                        style="@style/DefaultSpinnerStyle"
                         android:layout_width="match_parent"
-                        android:layout_height="40sp"
-                        style="@style/DefaultSpinnerStyle" />
+                        android:layout_height="40sp" />
                 </FrameLayout>
             </android.support.constraint.ConstraintLayout>
 
@@ -175,18 +176,18 @@
 
                 <TextView
                     android:id="@+id/textView16"
+                    style="@style/DefaultTextStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="12dp"
                     android:text="@string/prompt_task_repeat"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    style="@style/DefaultTextStyle"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <FrameLayout
-                    android:layout_width="250dp"
+                    android:layout_width="280dp"
                     android:layout_height="match_parent"
                     android:padding="12dp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -195,9 +196,9 @@
 
                     <Spinner
                         android:id="@+id/spinner_task_repeat"
+                        style="@style/DefaultSpinnerStyle"
                         android:layout_width="match_parent"
-                        android:layout_height="40sp"
-                        style="@style/DefaultSpinnerStyle" />
+                        android:layout_height="40sp" />
                 </FrameLayout>
             </android.support.constraint.ConstraintLayout>
 
@@ -209,18 +210,18 @@
 
                 <TextView
                     android:id="@+id/textView17"
+                    style="@style/DefaultTextStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="12dp"
                     android:text="@string/prompt_task_notes"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    style="@style/DefaultTextStyle"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <FrameLayout
-                    android:layout_width="250dp"
+                    android:layout_width="280dp"
                     android:layout_height="match_parent"
                     android:padding="12dp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -247,6 +248,7 @@
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="2dp"
         android:text="@string/button_task_confirm"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"

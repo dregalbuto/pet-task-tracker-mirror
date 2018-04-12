@@ -7,11 +7,12 @@
     tools:context="northeastern.is4300.pettasktracker.AddPetActivity">
 
     <LinearLayout
-        android:id="@+id/addPetLinearLayout"
+        android:id="@+id/addUserLinearLayout"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="2dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@id/button_pet_confirm"
+        app:layout_constraintBottom_toTopOf="@id/button_signup"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -36,21 +37,21 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <FrameLayout
-                android:layout_width="250dp"
+                android:layout_width="280dp"
                 android:layout_height="match_parent"
                 android:padding="12dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-            <EditText
-                android:id="@+id/petNameEdit"
-                style="@style/DefaultTextStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:selectAllOnFocus="true" />
+                <EditText
+                    android:id="@+id/petNameEdit"
+                    style="@style/DefaultTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:selectAllOnFocus="true" />
 
             </FrameLayout>
 
@@ -64,18 +65,18 @@
 
             <TextView
                 android:id="@+id/textView5"
+                style="@style/DefaultTextStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="12dp"
                 android:text="@string/prompt_pet_type"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                style="@style/DefaultTextStyle"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <FrameLayout
-                android:layout_width="250dp"
+                android:layout_width="280dp"
                 android:layout_height="match_parent"
                 android:padding="12dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -84,24 +85,24 @@
 
                 <Spinner
                     android:id="@+id/spinner_pet_type"
+                    style="@style/DefaultSpinnerStyle"
                     android:layout_width="match_parent"
-                    android:layout_height="40sp"
-                    style="@style/DefaultSpinnerStyle" />
+                    android:layout_height="40sp" />
             </FrameLayout>
         </android.support.constraint.ConstraintLayout>
 
     </LinearLayout>
 
     <Button
-        android:id="@+id/button_pet_confirm"
+        android:id="@+id/button_save_pet"
         style="@style/Widget.AppCompat.Button.Colored"
-        android:textSize="18sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="2dp"
         android:text="@string/prompt_pet_confirm"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addPetLinearLayout" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
