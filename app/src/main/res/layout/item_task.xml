@@ -16,49 +16,59 @@
             android:id="@+id/taskCheckBox"
             style="@android:style/Widget.Material.Light.CompoundButton.CheckBox"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginStart="15dp"
             android:scaleX="2.2"
             android:scaleY="2.2"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/taskTitle"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/taskTitle"
-            android:layout_width="wrap_content"
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/taskTextContainer"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="133dp"
-            android:padding="1dp"
-            android:text="Title"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toTopOf="@+id/taskTime"
-            app:layout_constraintEnd_toStartOf="@+id/taskUserButton"
-            app:layout_constraintStart_toEndOf="@+id/taskCheckBox"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/taskTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="133dp"
-            android:padding="1dp"
-            android:text="Time"
-            android:textSize="18sp"
+            android:layout_marginStart="15dp"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/taskUserButton"
             app:layout_constraintStart_toEndOf="@+id/taskCheckBox"
-            app:layout_constraintTop_toBottomOf="@+id/taskTitle" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/taskTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="1dp"
+                android:text="Title"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toTopOf="@+id/taskTime"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/taskTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="1dp"
+                android:text="Time"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/taskTitle" />
+        </android.support.constraint.ConstraintLayout>
 
         <Button
             android:id="@+id/taskUserButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="250dp"
             android:text="Button"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/pencilButton"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/taskTextContainer"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
@@ -66,6 +76,8 @@
             style="@android:style/Widget.DeviceDefault.Light.ImageButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:layout_marginStart="5dp"
             android:background="@android:color/background_light"
             android:scaleX="0.8"
             android:scaleY="0.8"

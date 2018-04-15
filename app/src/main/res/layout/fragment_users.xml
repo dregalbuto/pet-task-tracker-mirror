@@ -7,21 +7,6 @@
     android:layout_height="match_parent"
     tools:context="northeastern.is4300.pettasktracker.UsersFragment">
 
-    <TextView
-        android:id="@+id/usersTitle"
-        style="@style/DefaultTextStyle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Users"
-        android:textAlignment="center"
-        android:textColor="@android:color/black"
-        android:textSize="24sp"
-        android:layout_marginTop="5dp"
-        app:layout_constraintBottom_toTopOf="@+id/users_listview"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <ListView
         android:id="@+id/users_listview"
         android:layout_width="0dp"
@@ -30,6 +15,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/usersTitle" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

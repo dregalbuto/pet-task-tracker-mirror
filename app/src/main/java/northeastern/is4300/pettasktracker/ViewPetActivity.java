@@ -1,5 +1,6 @@
 package northeastern.is4300.pettasktracker;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -25,16 +26,13 @@ import northeastern.is4300.pettasktracker.data.TaskClient;
 
 public class ViewPetActivity extends AppCompatActivity {
 
-    private PetClient petClient;
-    private TaskClient taskClient;
-
     private ArrayList<Task> tasksArrayList;
     private TaskArrayAdapter taskArrayAdapter;
 
     private static class PetDetails {
         public Pet pet;
-        public TextView petName;
-        public ImageView petIcon;
+        TextView petName;
+        ImageView petIcon;
     }
 
     @Override
@@ -47,13 +45,14 @@ public class ViewPetActivity extends AppCompatActivity {
         final PetDetails petDetails = new PetDetails();
         petDetails.petName = (TextView) findViewById(R.id.textView);
         petDetails.petIcon = (ImageView) findViewById(R.id.petProfileIcon);
-        petDetails.pet = new Pet();
 
         Bundle b = getIntent().getExtras();
         if (b != null) {
             long petId = b.getLong("PET_ID");
 
-            petClient = new PetClient();
+            final Context myContext = this;
+
+            PetClient petClient = new PetClient();
             petClient.getPets("/" + petId, new JsonHttpResponseHandler() {
                 @Override
                 public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
@@ -64,18 +63,18 @@ public class ViewPetActivity extends AppCompatActivity {
                             petDetails.petIcon.setImageDrawable(getResources()
                                     .getDrawable(R.drawable.dog_icon_100));
                         }
+                        final ListView listViewTasks = (ListView) findViewById(R.id.pet_task_list);
+
+                        tasksArrayList = new ArrayList<Task>();
+                        taskArrayAdapter = new TaskArrayAdapter(myContext, tasksArrayList);
+                        listViewTasks.setAdapter(taskArrayAdapter);
+                        final Pet finalPet = petDetails.pet;
+
+                        fetchTasks(finalPet);
                     }
 
                 }
             });
-
-            final ListView listViewTasks = (ListView) findViewById(R.id.pet_task_list);
-
-            tasksArrayList = new ArrayList<Task>();
-            taskArrayAdapter = new TaskArrayAdapter(this, tasksArrayList);
-            listViewTasks.setAdapter(taskArrayAdapter);
-            final Pet finalPet = petDetails.pet;
-            fetchTasks(finalPet);
         }
 
          /* Set up add task button */
@@ -90,7 +89,7 @@ public class ViewPetActivity extends AppCompatActivity {
     }
 
     private void fetchTasks(final Pet pet) {
-        taskClient = new TaskClient();
+        TaskClient taskClient = new TaskClient();
         taskClient.getTasks("", new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
@@ -98,8 +97,10 @@ public class ViewPetActivity extends AppCompatActivity {
                     tasksArrayList = Task.fromJson(response);
                     taskArrayAdapter.clear();
                     for (Task task : tasksArrayList) {
-                        if (task.getPet().getId() == pet.getId())
-                        taskArrayAdapter.add(task);
+                        System.out.println(task.getPet().getId());
+                        if (task.getPet().getId() == pet.getId()) {
+                            taskArrayAdapter.add(task);
+                        }
                     }
                     taskArrayAdapter.notifyDataSetChanged();
                 }

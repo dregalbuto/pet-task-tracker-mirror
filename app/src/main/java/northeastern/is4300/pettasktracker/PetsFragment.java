@@ -23,13 +23,11 @@ import northeastern.is4300.pettasktracker.data.PetClient;
 
 public class PetsFragment extends Fragment {
 
-    private PetClient client;
     private ArrayList<Pet> petsList;
     private PetArrayAdapter petArrayAdapter;
 
     public static PetsFragment newInstance() {
-        PetsFragment fragment = new PetsFragment();
-        return fragment;
+        return new PetsFragment();
     }
 
     @Override
@@ -65,7 +63,7 @@ public class PetsFragment extends Fragment {
     }
 
     private void fetchPets() {
-        client = new PetClient();
+        PetClient client = new PetClient();
         client.getPets("", new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
