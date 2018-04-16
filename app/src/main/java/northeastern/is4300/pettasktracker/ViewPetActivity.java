@@ -97,7 +97,6 @@ public class ViewPetActivity extends AppCompatActivity {
                     tasksArrayList = Task.fromJson(response);
                     taskArrayAdapter.clear();
                     for (Task task : tasksArrayList) {
-                        System.out.println(task.getPet().getId());
                         if (task.getPet().getId() == pet.getId()) {
                             taskArrayAdapter.add(task);
                         }
