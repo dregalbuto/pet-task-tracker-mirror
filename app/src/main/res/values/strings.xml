@@ -48,6 +48,10 @@
     <string name="prompt_task_user">User</string>
     <string name="prompt_task_time">Task Time</string>
     <string-array name="array_task_time">
+        <item>8:00 AM</item>
+        <item>9:00 AM</item>
+        <item>10:00 AM</item>
+        <item>11:00 AM</item>
         <item>12:00 PM</item>
         <item>1:00 PM</item>
         <item>2:00 PM</item>
